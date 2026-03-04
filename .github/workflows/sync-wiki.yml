@@ -1,0 +1,43 @@
+name: Sync Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+
+jobs:
+  sync-wiki:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sync docs to Wiki
+        run: |
+          # Setup git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Clone the wiki
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki-repo || echo "Wiki not initialized yet"
+          
+          if [ -d "wiki-repo" ]; then
+            # Copy all markdown files from docs/ to wiki-repo/
+            cp -R docs/* wiki-repo/
+            
+            cd wiki-repo
+            git add .
+            if git diff-index --quiet HEAD; then
+              echo "No changes to commit"
+            else
+              git commit -m "Sync wiki from docs folder"
+              git push origin master
+            fi
+          else
+            echo "Wiki repository does not exist. Please create the first page manually in the GitHub UI."
+          fi

@@ -5,6 +5,9 @@
   <a href="https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js">
     <img src="https://img.shields.io/badge/📦_Install_UserScript-Click_Here-success?style=for-the-badge" alt="Install UserScript" />
   </a>
+  <a href="https://github.com/RE3CON/Gemini-AI/wiki">
+    <img src="https://img.shields.io/badge/📖_Read_Wiki-Documentation-orange?style=for-the-badge" alt="Read Wiki" />
+  </a>
   <br>
   <a href="https://github.com/RE3CON/Gemini-AI/actions">
     <img src="https://img.shields.io/github/actions/workflow/status/RE3CON/Gemini-AI/build-and-release.yml?style=for-the-badge" alt="Build Status" />
