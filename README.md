@@ -1,3 +1,14 @@
+<div align="center">
+  <a href="https://ais-pre-5qzqqbpqzgqjyshjhknvf5-75506219897.europe-west2.run.app">
+    <img src="https://img.shields.io/badge/🌐_Open_Web_App-Click_Here-blue?style=for-the-badge" alt="Open Web App" />
+  </a>
+  <a href="https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js">
+    <img src="https://img.shields.io/badge/📦_Install_UserScript-Click_Here-success?style=for-the-badge" alt="Install UserScript" />
+  </a>
+</div>
+
+<br />
+
 # AI Identity Hardener
 
 Sovereign fingerprint protection for Google AI & LLM environments. Merged Golden Master architecture with zero-blindspot hardening.
@@ -17,14 +28,12 @@ It includes active modules for:
 
 1. **Install an Extension:** Install a userscript manager like [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) in your browser.
 2. **Get the Script:** 
-   - Copy the script from the application interface, OR
-   - Download the `google-ai-identity.user.js` file.
-3. **Install the Script:**
-   - Open your userscript manager's dashboard.
-   - Create a new script and paste the copied code, OR drag and drop the downloaded file into the dashboard.
-4. **Activate:** Save the script and refresh any Google AI pages (e.g., `gemini.google.com`, `aistudio.google.com`). The script will run automatically at `document-start`.
+   - Click the **Install UserScript** badge at the top of this page to install directly from GitHub.
+   - Alternatively, copy the script from the [Web App](https://ais-pre-5qzqqbpqzgqjyshjhknvf5-75506219897.europe-west2.run.app).
+3. **Activate:** Save the script and refresh any Google AI pages (e.g., `gemini.google.com`, `aistudio.google.com`). The script will run automatically at `document-start`.
 
 ## Features
 - **PWA Support:** Install the application directly to your device.
 - **Dark/Light Mode:** Automatically syncs with your system preferences.
 - **AI Logo Generation:** Generate unique, transparent, and colorful security-focused logos using the Gemini API.
+- **Auto-Updates:** The script includes `@updateURL` and `@downloadURL` pointing to this repository, ensuring you always have the latest version.

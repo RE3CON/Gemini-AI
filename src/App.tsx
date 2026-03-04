@@ -18,6 +18,8 @@ const MERGED_SCRIPT = `// ==UserScript==
 // @match        https://assistant.google.com/*
 // @match        https://*.google.dev/*
 // @match        https://chatgpt.com/*
+// @updateURL    https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
+// @downloadURL  https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
 // @run-at       document-start
 // @grant        none
 // @noframes
@@ -435,74 +437,79 @@ export default function App() {
     <div className="min-h-screen bg-[#E6E6E6] dark:bg-[#0a0a0a] p-4 md:p-8 font-sans text-[#141414] dark:text-[#f5f5f5] relative overflow-hidden transition-colors duration-300">
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Header Section */}
-        <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-2">
+        <header className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
               {logoUrl ? (
-                <img src={logoUrl} alt="App Logo" className="w-8 h-8 rounded-lg shadow-sm border border-black/10" referrerPolicy="no-referrer" />
+                <img src={logoUrl} alt="App Logo" className="w-8 h-8 object-contain drop-shadow-sm" referrerPolicy="no-referrer" />
               ) : (
                 <Shield className="w-6 h-6 text-[#FF4444]" />
               )}
-              <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#8E9299]">
-                Security Protocol v12.0
-              </span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#151619] dark:text-white transition-colors">
-              Identity Hardener
-            </h1>
-            <p className="mt-2 text-[#8E9299] dark:text-[#A1A5AB] max-w-xl italic serif transition-colors">
-              Sovereign fingerprint protection for Google AI & LLM environments. 
-              Merged Golden Master architecture with zero-blindspot hardening.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 flex-wrap justify-end">
-            {deferredPrompt && (
               <button
-                onClick={handleInstallPWA}
+                onClick={handleGenerateLogo}
+                disabled={isGeneratingLogo}
+                className="flex items-center justify-center gap-1.5 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm disabled:opacity-50"
+              >
+                {isGeneratingLogo ? <Loader2 className="w-3 h-3 animate-spin" /> : <ImageIcon className="w-3 h-3" />}
+                <span className="text-xs font-medium">Generate Logo</span>
+              </button>
+            </div>
+            <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#8E9299] text-right">
+              Security Protocol v12.0
+            </span>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#151619] dark:text-white transition-colors">
+                Identity Hardener
+              </h1>
+              <p className="mt-2 text-[#8E9299] dark:text-[#A1A5AB] max-w-xl italic serif transition-colors">
+                Sovereign fingerprint protection for Google AI & LLM environments. 
+                Merged Golden Master architecture with zero-blindspot hardening.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 flex-wrap justify-end">
+              {deferredPrompt && (
+                <button
+                  onClick={handleInstallPWA}
+                  className="group relative flex items-center justify-center gap-2 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm"
+                >
+                  <AppWindow className="w-4 h-4 text-blue-500" />
+                  <span className="text-sm font-medium">Install App</span>
+                </button>
+              )}
+              <button
+                onClick={() => setShowGithubModal(true)}
                 className="group relative flex items-center justify-center gap-2 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm"
               >
-                <AppWindow className="w-4 h-4 text-blue-500" />
-                <span className="text-sm font-medium">Install App</span>
+                <Github className="w-4 h-4" />
+                <span className="text-sm font-medium">Push</span>
               </button>
-            )}
-            <button
-              onClick={handleGenerateLogo}
-              disabled={isGeneratingLogo}
-              className="group relative flex items-center justify-center gap-2 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm disabled:opacity-50"
-            >
-              {isGeneratingLogo ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImageIcon className="w-4 h-4" />}
-              <span className="text-sm font-medium">Generate Logo</span>
-            </button>
-            <button
-              onClick={() => setShowGithubModal(true)}
-              className="group relative flex items-center justify-center gap-2 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-6 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm"
-            >
-              <Github className="w-4 h-4" />
-              <span className="text-sm font-medium">Push</span>
-            </button>
-            <button
-              onClick={handleCopy}
-              className="group relative flex items-center justify-center gap-2 bg-[#151619] dark:bg-white text-white dark:text-[#151619] px-6 py-3 rounded-xl hover:bg-[#252629] dark:hover:bg-gray-200 transition-all active:scale-95 shadow-lg shadow-black/10 dark:shadow-white/10"
-            >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400 dark:text-emerald-600" />
-                <span className="text-sm font-medium">Copied</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4" />
-                <span className="text-sm font-medium">Copy</span>
-              </>
-            )}
-            </button>
-            <button
-              onClick={handleInstallScript}
-              className="group relative flex items-center justify-center gap-2 bg-[#FF4444] text-white px-6 py-3 rounded-xl hover:bg-[#E63E3E] transition-all active:scale-95 shadow-lg shadow-red-500/20"
-            >
-              <Download className="w-4 h-4" />
-              <span className="text-sm font-medium">Install</span>
-            </button>
+              <button
+                onClick={handleCopy}
+                className="group relative flex items-center justify-center gap-2 bg-[#151619] dark:bg-white text-white dark:text-[#151619] px-6 py-3 rounded-xl hover:bg-[#252629] dark:hover:bg-gray-200 transition-all active:scale-95 shadow-lg shadow-black/10 dark:shadow-white/10"
+              >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-emerald-400 dark:text-emerald-600" />
+                  <span className="text-sm font-medium">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4" />
+                  <span className="text-sm font-medium">Copy</span>
+                </>
+              )}
+              </button>
+              <button
+                onClick={handleInstallScript}
+                className="group relative flex items-center justify-center gap-2 bg-[#FF4444] text-white px-6 py-3 rounded-xl hover:bg-[#E63E3E] transition-all active:scale-95 shadow-lg shadow-red-500/20"
+              >
+                <Download className="w-4 h-4" />
+                <span className="text-sm font-medium">Install</span>
+              </button>
+            </div>
           </div>
         </header>
 
