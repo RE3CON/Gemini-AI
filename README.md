@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://ais-pre-5qzqqbpqzgqjyshjhknvf5-75506219897.europe-west2.run.app">
+  <a href="https://re3con.github.io/Gemini-AI/">
     <img src="https://img.shields.io/badge/🌐_Open_Web_App-Click_Here-blue?style=for-the-badge" alt="Open Web App" />
   </a>
   <a href="https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js">
@@ -29,7 +29,7 @@ It includes active modules for:
 1. **Install an Extension:** Install a userscript manager like [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) in your browser.
 2. **Get the Script:** 
    - Click the **Install UserScript** badge at the top of this page to install directly from GitHub.
-   - Alternatively, copy the script from the [Web App](https://ais-pre-5qzqqbpqzgqjyshjhknvf5-75506219897.europe-west2.run.app).
+   - Alternatively, copy the script from the [Web App](https://re3con.github.io/Gemini-AI/).
 3. **Activate:** Save the script and refresh any Google AI pages (e.g., `gemini.google.com`, `aistudio.google.com`). The script will run automatically at `document-start`.
 
 ## Features
@@ -37,3 +37,11 @@ It includes active modules for:
 - **Dark/Light Mode:** Automatically syncs with your system preferences.
 - **AI Logo Generation:** Generate unique, transparent, and colorful security-focused logos using the Gemini API.
 - **Auto-Updates:** The script includes `@updateURL` and `@downloadURL` pointing to this repository, ensuring you always have the latest version.
+
+## Community & Contributing
+
+We invite the community to join and help improve this project! Whether you're finding bugs, suggesting new features, or submitting pull requests for better fingerprint hardening techniques, your contributions are highly valued. 
+
+- **Fork the repository** to experiment with your own ideas.
+- **Open an issue** to discuss potential changes or report bugs.
+- **Submit a Pull Request!** Let's build the ultimate privacy shield together.
