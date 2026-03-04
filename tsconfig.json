@@ -22,5 +22,10 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "google-ai-identity.user.js"
+  ]
 }

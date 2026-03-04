@@ -1,15 +1,24 @@
-# Core Features 🛡️
+# Features
 
-Gemini-AI employs state-of-the-art techniques to harden your browser identity.
+The AI Identity Hardener includes several advanced modules to protect your browser fingerprint.
 
-## 🎨 Canvas & WebGL Poisoning
-Injects subtle noise into Canvas API and WebGL rendering contexts, making your graphical fingerprint unique per session and preventing cross-site tracking.
+## 1. Hardware Spoofing
+- **GPU:** Simulates an NVIDIA GeForce RTX 3080.
+- **CPU:** Reports 16 hardware concurrency cores.
+- **Memory:** Reports 8GB of device memory.
+- **Platform:** Identifies as Linux x86_64 (GNOME style).
 
-## 🕵️ User-Agent & Platform Spoofing
-Dynamically alters your `navigator.userAgent`, `navigator.platform`, and `navigator.hardwareConcurrency` to blend in with common hardware profiles.
+## 2. Network Stealth
+- **Connection:** Spoofs a 4G effective connection type.
+- **GPC:** Enforces Global Privacy Control.
+- **WebRTC:** Locks down ICE servers to prevent local IP leaks.
 
-## 🌐 WebRTC Leak Protection
-Overrides WebRTC interfaces to prevent your real IP address from leaking via STUN/TURN servers.
+## 3. Masking & Stealth
+- **toString() Protection:** Prevents websites from detecting spoofed functions by checking their string representation.
+- **Timing Jitter:** Adds micro-noise to `performance.now()` and `requestAnimationFrame()`.
+- **Canvas/WebGL Noise:** Injects subtle noise into rendering APIs to break unique canvas fingerprints.
 
-## ⏱️ Timing & Font Protection
-Adds jitter to `performance.now()` to thwart timing attacks and masks installed system fonts.
+## 4. Environment Realism
+- **Screen Geometry:** Simulates a 1920x1080 desktop environment even on mobile devices.
+- **Battery Status:** Reports a constant "charging" state at 100% to prevent battery-based tracking.
+- **Intl/Date:** Locks the timezone to America/Los_Angeles and locale to en-US.

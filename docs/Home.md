@@ -1,14 +1,15 @@
-# Welcome to the Gemini-AI Wiki! 🚀
+# Welcome to the AI Identity Hardener Wiki
 
-Gemini-AI is a cutting-edge **Identity Hardener** and **Stealth UserScript** designed to protect your digital footprint while interacting with AI platforms and the broader web.
+The **AI Identity Hardener** is a sovereign fingerprint protection tool specifically designed for Google AI and LLM environments.
 
-## 📖 What is this project?
-This project consists of two main components:
-1. **The Web App**: A React-based interface to configure your stealth settings.
-2. **The UserScript**: A highly modular JavaScript payload that injects into your browser to spoof fingerprints, WebGL, Canvas, and more.
+## Core Philosophy
+In an era of increasing behavioral analysis and fingerprinting, maintaining digital sovereignty is crucial. This project provides a "Golden Master" architecture that merges multiple hardening techniques into a single, high-performance script.
 
-## 🚀 Quick Links
-* [Installation Guide](Installation)
-* [Core Features](Features)
-* [Architecture & Development](Architecture)
-* [FAQ](FAQ)
+## Key Modules
+- **Hardware Spoofing:** Simulates high-end hardware to blend in with professional workstations.
+- **Network Stealth:** Enforces privacy controls and prevents IP leaks.
+- **Masking Engine:** Protects the script itself from detection.
+- **Jitter Logic:** Injects noise into timing APIs to break behavioral tracking.
+
+## Getting Started
+To get started, check out the [Installation](Installation) guide.
