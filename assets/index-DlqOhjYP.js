@@ -441,12 +441,23 @@ ${T}`)}return c}),ba=vL(_E);/**
     // ─── 1. CORE MASKING ENGINE & UTILITIES ────────────────────────────────
     // Prevents detection of spoofed functions via .toString()
     const originalToString = Function.prototype.toString;
-    const modifiedFns = new Set();
+    const modifiedFns = new WeakSet();
     
-    Function.prototype.toString = function() {
-        if (modifiedFns.has(this)) return \`function \${this.name}() { [native code] }\`;
-        return originalToString.call(this);
-    };
+    const newToString = new Proxy(originalToString, {
+        apply(target, thisArg, args) {
+            if (typeof thisArg === 'function' && modifiedFns.has(thisArg)) {
+                return 'function ' + (thisArg.name || '') + '() { [native code] }';
+            }
+            return Reflect.apply(target, thisArg, args);
+        }
+    });
+
+    Object.defineProperty(Function.prototype, 'toString', {
+        value: newToString,
+        configurable: true,
+        enumerable: false,
+        writable: true
+    });
 
     const protect = (fn) => { 
         if (fn && typeof fn === 'function') modifiedFns.add(fn); 
@@ -624,14 +635,31 @@ ${T}`)}return c}),ba=vL(_E);/**
     }
 
     // ─── 7. WEBRTC & AUDIO HARDENING ────────────────────────────────────────
-    // Disables ICE servers to prevent local IP leaks via WebRTC
+    // Disables ICE servers and strips IP addresses from SDP to prevent leaks
     const origPeer = window.RTCPeerConnection || window.webkitRTCPeerConnection;
     if (origPeer) {
-        window.RTCPeerConnection = protect(function(config) {
-            if (config) config.iceServers = []; 
-            return new origPeer(config);
+        const PeerConnection = protect(function(config) {
+            if (config) {
+                config.iceServers = [];
+                config.iceTransportPolicy = 'relay';
+            }
+            const pc = new origPeer(config);
+            pc.addIceCandidate = protect(() => Promise.resolve());
+            const stripSDP = (desc) => {
+                if (!desc || !desc.sdp) return desc;
+                desc.sdp = desc.sdp.replace(/a=candidate:.*/g, '');
+                desc.sdp = desc.sdp.replace(/c=IN IP4 .*/g, 'c=IN IP4 0.0.0.0');
+                return desc;
+            };
+            const origSetLocal = pc.setLocalDescription;
+            pc.setLocalDescription = protect(function(desc) {
+                return origSetLocal.apply(this, [stripSDP(desc)]);
+            });
+            return pc;
         });
-        window.RTCPeerConnection.prototype = origPeer.prototype;
+        PeerConnection.prototype = origPeer.prototype;
+        window.RTCPeerConnection = PeerConnection;
+        if (window.webkitRTCPeerConnection) window.webkitRTCPeerConnection = PeerConnection;
     }
 
     const spoofAudio = (proto) => {
