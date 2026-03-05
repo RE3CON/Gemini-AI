@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Shield, Copy, Check, Terminal, Cpu, Globe, Lock, Zap, Github, Loader2, XCircle, CheckCircle2, AlertCircle, Image as ImageIcon, Download, Maximize, Minimize, AppWindow } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GoogleGenAI } from '@google/genai';
+// GoogleGenAI removed from frontend for security - calls are now proxied via server
 
 const MERGED_SCRIPT = `// ==UserScript==
 // @name         Google AI Identity Hardener
@@ -368,34 +368,24 @@ export default function App() {
   const handleGenerateLogo = async () => {
     setIsGeneratingLogo(true);
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash-image',
-        contents: {
-          parts: [
-            {
-              text: 'A highly unique, colorful, and vibrant logo for a cybersecurity application. The design must be completely original, focusing heavily on digital security, privacy, and protection. Incorporate abstract security elements like a futuristic shield, cryptographic keys, or a secure vault, combined with vibrant, multi-colored neon gradients. Vector art style, clean edges, isolated on a transparent background. No text, no words.',
-            },
-          ],
-        },
-      });
-      
-      let found = false;
-      for (const part of response.candidates?.[0]?.content?.parts || []) {
-        if (part.inlineData) {
-          const base64EncodeString = part.inlineData.data;
-          setLogoUrl(`data:image/png;base64,${base64EncodeString}`);
-          showToast('success', 'Logo generated successfully!');
-          found = true;
-          break;
+      const response = await fetch('/api/generate-logo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         }
-      }
-      if (!found) {
-        showToast('error', 'Failed to generate logo.');
+      });
+
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        setLogoUrl(`data:image/png;base64,${data.imageData}`);
+        showToast('success', 'Logo generated successfully!');
+      } else {
+        showToast('error', data.error || 'Failed to generate logo.');
       }
     } catch (error: any) {
       console.error('Error generating logo:', error);
-      showToast('error', 'Error generating logo: ' + error.message);
+      showToast('error', 'Network error during logo generation.');
     } finally {
       setIsGeneratingLogo(false);
     }

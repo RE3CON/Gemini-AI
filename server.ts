@@ -4,6 +4,7 @@ import { Octokit } from "octokit";
 import fs from "fs/promises";
 import path from "path";
 import dotenv from "dotenv";
+import { GoogleGenAI } from "@google/genai";
 import { rateLimit } from "express-rate-limit";
 
 dotenv.config();
@@ -23,6 +24,44 @@ async function startServer() {
 
   app.use(express.json());
   app.use("/api/", apiLimiter);
+
+  // Logo Generation Route
+  app.post("/api/generate-logo", async (req, res) => {
+    try {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        return res.status(500).json({ error: "GEMINI_API_KEY is not configured on the server." });
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash-image',
+        contents: {
+          parts: [
+            {
+              text: 'A highly unique, colorful, and vibrant logo for a cybersecurity application. The design must be completely original, focusing heavily on digital security, privacy, and protection. Incorporate abstract security elements like a futuristic shield, cryptographic keys, or a secure vault, combined with vibrant, multi-colored neon gradients. Vector art style, clean edges, isolated on a transparent background. No text, no words.',
+            },
+          ],
+        },
+      });
+
+      let found = false;
+      for (const part of response.candidates?.[0]?.content?.parts || []) {
+        if (part.inlineData) {
+          res.json({ success: true, imageData: part.inlineData.data });
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        res.status(500).json({ error: "Failed to generate image data from AI model." });
+      }
+    } catch (error: any) {
+      console.error("Logo Generation Error:", error.message || error);
+      res.status(500).json({ error: "Server error during logo generation.", details: error.message });
+    }
+  });
 
   // GitHub Push Route
   app.post("/api/github/push", async (req, res) => {
