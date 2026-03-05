@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Copy, Check, Terminal, Cpu, Globe, Lock, Zap, Github, Loader2, XCircle, CheckCircle2, AlertCircle, Image as ImageIcon, Download, Maximize, Minimize, AppWindow } from 'lucide-react';
+import { Shield, Copy, Check, Terminal, Cpu, Globe, Lock, Zap, Github, Loader2, XCircle, CheckCircle2, AlertCircle, Image as ImageIcon, Download, Maximize, Minimize, AppWindow, Key } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-// GoogleGenAI removed from frontend for security - calls are now proxied via server
+import { GoogleGenAI } from '@google/genai';
 
 const MERGED_SCRIPT = `// ==UserScript==
 // @name         Google AI Identity Hardener
@@ -297,6 +297,8 @@ export default function App() {
   const [pushStatus, setPushStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [isGeneratingLogo, setIsGeneratingLogo] = useState(false);
+  const [showKeyModal, setShowKeyModal] = useState(false);
+  const [localApiKey, setLocalApiKey] = useState(localStorage.getItem('gemini_api_key') || '');
   const [isReaderMode, setIsReaderMode] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   
@@ -365,27 +367,67 @@ export default function App() {
     window.location.href = 'https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js';
   };
 
+  const handleSaveKey = () => {
+    localStorage.setItem('gemini_api_key', localApiKey);
+    setShowKeyModal(false);
+    showToast('success', 'API Key saved locally.');
+  };
+
   const handleGenerateLogo = async () => {
     setIsGeneratingLogo(true);
     try {
-      const response = await fetch('/api/generate-logo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+      // 1. Try Server-side first (for Shared App URL)
+      try {
+        const response = await fetch('/api/generate-logo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
 
-      const data = await response.json();
-      
-      if (response.ok && data.success) {
-        setLogoUrl(`data:image/png;base64,${data.imageData}`);
-        showToast('success', 'Logo generated successfully!');
-      } else {
-        showToast('error', data.error || 'Failed to generate logo.');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setLogoUrl(`data:image/png;base64,${data.imageData}`);
+            showToast('success', 'Logo generated via server!');
+            setIsGeneratingLogo(false);
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('Server-side generation unavailable, trying client-side...');
       }
+
+      // 2. Fallback to Client-side (for GitHub Pages/Static)
+      const apiKey = localApiKey || process.env.GEMINI_API_KEY;
+      
+      if (!apiKey) {
+        setShowKeyModal(true);
+        showToast('info', 'Please provide a Gemini API Key for static hosting.');
+        setIsGeneratingLogo(false);
+        return;
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash-image',
+        contents: {
+          parts: [{ text: 'A highly unique, colorful, and vibrant logo for a cybersecurity application. The design must be completely original, focusing heavily on digital security, privacy, and protection. Vector art style, clean edges, isolated on a transparent background.' }],
+        },
+      });
+      
+      let found = false;
+      for (const part of response.candidates?.[0]?.content?.parts || []) {
+        if (part.inlineData) {
+          setLogoUrl(`data:image/png;base64,${part.inlineData.data}`);
+          showToast('success', 'Logo generated locally!');
+          found = true;
+          break;
+        }
+      }
+      if (!found) showToast('error', 'Failed to generate logo.');
+
     } catch (error: any) {
       console.error('Error generating logo:', error);
-      showToast('error', 'Network error during logo generation.');
+      showToast('error', 'Error: ' + (error.message || 'Check your API key or connection.'));
     } finally {
       setIsGeneratingLogo(false);
     }
@@ -455,14 +497,23 @@ export default function App() {
               ) : (
                 <Shield className="w-6 h-6 text-[#FF4444]" />
               )}
-              <button
-                onClick={handleGenerateLogo}
-                disabled={isGeneratingLogo}
-                className="flex items-center justify-center gap-1.5 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm disabled:opacity-50"
-              >
-                {isGeneratingLogo ? <Loader2 className="w-3 h-3 animate-spin" /> : <ImageIcon className="w-3 h-3" />}
-                <span className="text-xs font-medium">Generate Logo</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setShowKeyModal(true)}
+                  className="p-1.5 text-[#8E9299] hover:text-[#151619] dark:hover:text-white transition-colors"
+                  title="Configure API Key"
+                >
+                  <Key className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={handleGenerateLogo}
+                  disabled={isGeneratingLogo}
+                  className="flex items-center justify-center gap-1.5 bg-white dark:bg-[#1c1d21] border border-black/10 dark:border-white/10 text-[#151619] dark:text-white px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-[#252629] transition-all active:scale-95 shadow-sm disabled:opacity-50"
+                >
+                  {isGeneratingLogo ? <Loader2 className="w-3 h-3 animate-spin" /> : <ImageIcon className="w-3 h-3" />}
+                  <span className="text-xs font-medium">Generate Logo</span>
+                </button>
+              </div>
             </div>
             <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-[#8E9299] text-right">
               Security Protocol v12.0
@@ -607,6 +658,70 @@ export default function App() {
               {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-500" />}
               <span className="text-sm font-medium text-[#151619]">{toast.message}</span>
             </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* API Key Modal */}
+        <AnimatePresence>
+          {showKeyModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setShowKeyModal(false)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative w-full max-w-md bg-white dark:bg-[#1c1d21] rounded-3xl p-8 shadow-2xl border border-transparent dark:border-white/10"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-2xl bg-blue-500 flex items-center justify-center text-white">
+                    <Key className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold dark:text-white">API Configuration</h2>
+                    <p className="text-xs text-[#8E9299] dark:text-[#A1A5AB]">Required for static hosting (GitHub)</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-[10px] font-mono uppercase tracking-widest text-[#8E9299] dark:text-[#A1A5AB] mb-1.5">
+                      Gemini API Key
+                    </label>
+                    <input
+                      type="password"
+                      value={localApiKey}
+                      onChange={(e) => setLocalApiKey(e.target.value)}
+                      placeholder="Enter your Gemini API Key"
+                      className="w-full bg-gray-50 dark:bg-[#111111] border border-black/5 dark:border-white/10 rounded-xl px-4 py-3 text-sm text-[#141414] dark:text-white focus:outline-none focus:ring-2 focus:ring-black/5 dark:focus:ring-white/10 transition-all"
+                    />
+                    <p className="mt-2 text-[10px] text-[#8E9299] dark:text-[#A1A5AB] leading-relaxed">
+                      This key is stored <strong>only in your browser</strong>. It is never sent to GitHub. You can get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">AI Studio</a>.
+                    </p>
+                  </div>
+
+                  <div className="flex gap-3 pt-2">
+                    <button
+                      onClick={() => setShowKeyModal(false)}
+                      className="flex-1 px-6 py-3 rounded-xl text-sm font-medium border border-black/5 dark:border-white/10 dark:text-white hover:bg-gray-50 dark:hover:bg-[#252629] transition-all"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleSaveKey}
+                      className="flex-1 bg-[#151619] dark:bg-white text-white dark:text-[#151619] px-6 py-3 rounded-xl text-sm font-medium hover:bg-[#252629] dark:hover:bg-gray-200 transition-all"
+                    >
+                      Save Key
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
 
