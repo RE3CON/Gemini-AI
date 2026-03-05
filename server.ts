@@ -5,6 +5,7 @@ import fs from "fs/promises";
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
@@ -12,6 +13,15 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Global rate limiter to protect expensive operations (e.g., filesystem access)
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    standardHeaders: true,
+    legacyHeaders: false,
+  });
+
+  app.use(limiter);
   app.use(express.json());
 
   // GitHub Push Route
