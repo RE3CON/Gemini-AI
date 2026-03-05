@@ -1,3 +1,4 @@
+It's placebo for now. Porting to ADB commands required!
 <div align="center">
   <a href="https://re3con.github.io/Gemini-AI/">
     <img src="https://img.shields.io/badge/🌐_Open_Web_App-Click_Here-blue?style=for-the-badge" alt="Open Web App" />
