@@ -22,14 +22,15 @@ jobs:
         with:
           repository: ${{ github.repository }}.wiki
           path: wiki
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WIKI_ACTION_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Sync docs to wiki
+        env:
+          WIKI_TOKEN: ${{ secrets.WIKI_ACTION_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           # Ensure docs directory exists in main
           if [ -d "main/docs" ]; then
             # Sync files from main/docs to wiki/
-            # We use rsync to keep it clean, excluding the .git directory
             rsync -av --delete main/docs/ wiki/ --exclude .git
             
             cd wiki
@@ -40,6 +41,12 @@ jobs:
             if [ -n "$(git status --porcelain)" ]; then
               git add .
               git commit -m "Sync documentation from main repository"
+              
+              # Use token in remote URL for push if WIKI_ACTION_TOKEN is provided
+              if [ -n "${{ secrets.WIKI_ACTION_TOKEN }}" ]; then
+                git remote set-url origin "https://x-access-token:${WIKI_TOKEN}@github.com/${{ github.repository }}.wiki.git"
+              fi
+              
               git push
             else
               echo "No changes to sync."
