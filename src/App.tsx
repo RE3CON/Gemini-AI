@@ -6,7 +6,7 @@ import { GoogleGenAI } from '@google/genai';
 const MERGED_SCRIPT = `// ==UserScript==
 // @name         Google AI Identity Hardener
 // @namespace    http://tampermonkey.net/
-// @version      12.5.1
+// @version      12.5.2
 // @description  Ultimate Chrome fingerprint hardening for Google AI services - Full Sovereign Hybrid
 // @author       Anonymous
 // @license      MIT
@@ -79,19 +79,19 @@ const MERGED_SCRIPT = `// ==UserScript==
         });
     });
 
-    // ─── 3. NAVIGATOR & CPU CONSISTENCY (Linux RTX 3080 Profile) ─────────────
-    const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
+    // ─── 3. NAVIGATOR & CPU CONSISTENCY (Pixel 8 Pro Profile) ─────────────
+    const UA = 'Mozilla/5.0 (Linux; Android 14; Pixel 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.6613.119 Mobile Safari/537.36';
     
     secureProps(navigator, 'userAgent', UA);
-    secureProps(navigator, 'platform', 'Linux x86_64');
-    secureProps(navigator, 'vendor', 'Google Inc');
-    secureProps(navigator, 'hardwareConcurrency', 16);
+    secureProps(navigator, 'platform', 'Linux armv8l');
+    secureProps(navigator, 'vendor', 'Google Inc.');
+    secureProps(navigator, 'hardwareConcurrency', 9);
     secureProps(navigator, 'deviceMemory', 8);
-    secureProps(navigator, 'maxTouchPoints', 0); // Spoofing desktop on mobile
+    secureProps(navigator, 'maxTouchPoints', 10); // Spoofing Pixel 8 Pro
     secureProps(navigator, 'language', 'en-US');
     secureProps(navigator, 'languages', ['en-US', 'en']);
     secureProps(navigator, 'webdriver', undefined);
-    secureProps(navigator, 'pdfViewerEnabled', true);
+    secureProps(navigator, 'pdfViewerEnabled', false);
 
     // High-Entropy UserAgentData (Client Hints Restoration)
     if (navigator.userAgentData) {
@@ -100,23 +100,24 @@ const MERGED_SCRIPT = `// ==UserScript==
             const values = await getHighEntropyValues.apply(navigator.userAgentData, [hints]);
             return { 
                 ...values, 
-                platform: "Linux", 
-                architecture: "x86", 
-                model: "", 
-                platformVersion: "6.5.0",
-                uaFullVersion: "128.0.6613.119"
+                platform: "Android", 
+                architecture: "", 
+                model: "Pixel 8 Pro", 
+                platformVersion: "14.0.0",
+                uaFullVersion: "128.0.6613.119",
+                bitness: ""
             };
         });
 
         Object.defineProperty(Navigator.prototype, 'userAgentData', {
-            get: protect(() => Promise.resolve({
+            get: protect(() => ({
                 brands: [
                     { brand: 'Not_A Brand', version: '8' }, 
                     { brand: 'Chromium', version: '128' }, 
-                    { brand: 'Chrome', version: '128' }
+                    { brand: 'Google Chrome', version: '128' }
                 ],
-                platform: 'Linux', 
-                mobile: false,
+                platform: 'Android', 
+                mobile: true,
                 getHighEntropyValues: navigator.userAgentData.getHighEntropyValues
             }))
         });
@@ -136,22 +137,23 @@ const MERGED_SCRIPT = `// ==UserScript==
 
     if (navigator.mediaDevices && navigator.mediaDevices.enumerateDevices) {
         navigator.mediaDevices.enumerateDevices = protect(async () => [
-            { kind: 'audioinput', label: 'Internal Microphone (Generic)', deviceId: 'default', groupId: 'default' },
-            { kind: 'videoinput', label: 'Integrated Webcam (Generic)', deviceId: 'default', groupId: 'default' },
-            { kind: 'audiooutput', label: 'Internal Speakers', deviceId: 'default', groupId: 'default' }
+            { kind: 'audioinput', label: 'Microphone (built-in)', deviceId: 'default', groupId: 'default' },
+            { kind: 'videoinput', label: 'Camera 0, Facing back', deviceId: 'default', groupId: 'default' },
+            { kind: 'videoinput', label: 'Camera 1, Facing front', deviceId: 'default', groupId: 'default' },
+            { kind: 'audiooutput', label: 'Speaker (built-in)', deviceId: 'default', groupId: 'default' }
         ]);
     }
 
     // ─── 4. WEBGL & CANVAS STEALTH ──────────────────────────────────────────
-    // Spoofs high-end GPU signature (RTX 3080)
+    // Spoofs mobile GPU signature (Pixel 8 Pro Mali-G715)
     const spoofWebGL = (proto) => {
         const getParam = proto.getParameter;
         proto.getParameter = protect(function(param) {
             const mask = {
-                37445: 'Google Inc. (NVIDIA)', 
-                37446: 'ANGLE (NVIDIA, NVIDIA GeForce RTX 3080 Direct3D11 vs_5_0 ps_5_0)', 
-                7936: 'NVIDIA Corporation', 
-                7937: 'NVIDIA GeForce RTX 3080' 
+                37445: 'ARM', 
+                37446: 'Mali-G715', 
+                7936: 'ARM', 
+                7937: 'Mali-G715' 
             };
             return mask[param] || getParam.apply(this, arguments);
         });
@@ -179,16 +181,22 @@ const MERGED_SCRIPT = `// ==UserScript==
         return data;
     });
 
-    // ─── 5. GEOMETRY & SCREEN REALISM (Linux GNOME Style) ───────────────────
-    // Spoofs desktop screen dimensions on mobile devices
+    // ─── 5. GEOMETRY & SCREEN REALISM (Pixel 8 Pro Style) ───────────────────
+    // Spoofs mobile screen dimensions
     Object.defineProperties(screen, {
-        height: { get: protect(() => 1080) },
-        width: { get: protect(() => 1920) },
-        availHeight: { get: protect(() => 1052) }, // GNOME Taskbar simulation
-        availWidth: { get: protect(() => 1920) },
+        height: { get: protect(() => 918) },
+        width: { get: protect(() => 412) },
+        availHeight: { get: protect(() => 918) },
+        availWidth: { get: protect(() => 412) },
         colorDepth: { get: protect(() => 24) },
         pixelDepth: { get: protect(() => 24) }
     });
+    
+    try {
+        Object.defineProperty(window, 'devicePixelRatio', { get: protect(() => 3.5) });
+        Object.defineProperty(window, 'innerWidth', { get: protect(() => 412) });
+        Object.defineProperty(window, 'innerHeight', { get: protect(() => 918) });
+    } catch (e) {}
 
     const origGetClientRects = Element.prototype.getClientRects;
     Element.prototype.getClientRects = protect(function() {
