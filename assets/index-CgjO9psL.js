@@ -420,7 +420,7 @@ ${T}`)}return c}),Ia=SL(AE);/**
  */const f2="gl-node/";class d2{get interactions(){var e;if(this._interactions!==void 0)return this._interactions;console.warn("GoogleGenAI.interactions: Interactions usage is experimental and may change in future versions.");const i=this.httpOptions;i!=null&&i.extraBody&&console.warn("GoogleGenAI.interactions: Client level httpOptions.extraBody is not supported by the interactions client and will be ignored.");const s=new st({baseURL:this.apiClient.getBaseUrl(),apiKey:this.apiKey,apiVersion:this.apiClient.getApiVersion(),clientAdapter:this.apiClient,defaultHeaders:this.apiClient.getDefaultHeaders(),timeout:i==null?void 0:i.timeout,maxRetries:(e=i==null?void 0:i.retryOptions)===null||e===void 0?void 0:e.attempts});return this._interactions=s.interactions,this._interactions}constructor(e){var i;if(e.apiKey==null)throw new Error("An API Key must be set when running in a browser");if(e.project||e.location)throw new Error("Vertex AI project based authentication is not supported on browser runtimes. Please do not provide a project or location.");this.vertexai=(i=e.vertexai)!==null&&i!==void 0?i:!1,this.apiKey=e.apiKey;const s=jw(e.httpOptions,e.vertexai,void 0,void 0);s&&(e.httpOptions?e.httpOptions.baseUrl=s:e.httpOptions={baseUrl:s}),this.apiVersion=e.apiVersion,this.httpOptions=e.httpOptions;const a=new c2(this.apiKey);this.apiClient=new sP({auth:a,apiVersion:this.apiVersion,apiKey:this.apiKey,vertexai:this.vertexai,httpOptions:this.httpOptions,userAgentExtra:f2+"web",uploader:new a2,downloader:new WL}),this.models=new CP(this.apiClient),this.live=new vP(this.apiClient,a,new l2),this.batches=new bb(this.apiClient),this.chats=new fD(this.models,this.apiClient),this.caches=new lD(this.apiClient),this.files=new AD(this.apiClient),this.operations=new RP(this.apiClient),this.authTokens=new OP(this.apiClient),this.tunings=new $L(this.apiClient),this.fileSearchStores=new QP(this.apiClient)}}const Z0=`// ==UserScript==
 // @name         Google AI Identity Hardener
 // @namespace    http://tampermonkey.net/
-// @version      12.5.2
+// @version      12.5.3
 // @description  Ultimate Chrome fingerprint hardening for Google AI services - Full Sovereign Hybrid
 // @author       Anonymous
 // @license      MIT
@@ -433,6 +433,13 @@ ${T}`)}return c}),Ia=SL(AE);/**
 // @match        https://assistant.google.com/*
 // @match        https://*.google.dev/*
 // @match        https://chatgpt.com/*
+// @match        https://browserleaks.com/*
+// @match        https://amiunique.org/*
+// @match        https://coveryourtracks.eff.org/*
+// @match        https://bot.sannysoft.com/*
+// @match        https://abrahamjuliot.github.io/creepjs/*
+// @match        https://pixelscan.net/*
+// @match        https://abrahamjuliot.github.io/creepjs/*
 // @updateURL    https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
 // @downloadURL  https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
 // @run-at       document-start
