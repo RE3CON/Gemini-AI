@@ -1,4 +1,3 @@
-It's placebo for now. Porting to ADB commands required!
 <div align="center">
   <a href="https://re3con.github.io/Gemini-AI/">
     <img src="https://img.shields.io/badge/🌐_Open_Web_App-Click_Here-blue?style=for-the-badge" alt="Open Web App" />
@@ -42,6 +41,16 @@ It includes active modules for:
    - Click the **Install UserScript** badge at the top of this page to install directly from GitHub.
    - Alternatively, copy the script from the [Web App](https://re3con.github.io/Gemini-AI/).
 3. **Activate:** Save the script and refresh any Google AI pages (e.g., `gemini.google.com`, `aistudio.google.com`). The script will run automatically at `document-start`.
+
+## Browser Test Pages
+
+The script is configured to run on several popular browser fingerprinting test pages so you can verify its effectiveness. Visit any of the following to see the spoofing in action:
+- [Bot Sannysoft](https://bot.sannysoft.com/)
+- [Pixelscan](https://pixelscan.net/)
+- [AmIUnique](https://amiunique.org/)
+- [BrowserLeaks](https://browserleaks.com/)
+- [Cover Your Tracks (EFF)](https://coveryourtracks.eff.org/)
+- [CreepJS](https://abrahamjuliot.github.io/creepjs/)
 
 ## Features
 - **PWA Support:** Install the application directly to your device.

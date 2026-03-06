@@ -6,7 +6,7 @@ import { GoogleGenAI } from '@google/genai';
 const MERGED_SCRIPT = `// ==UserScript==
 // @name         Google AI Identity Hardener
 // @namespace    http://tampermonkey.net/
-// @version      12.5.2
+// @version      12.5.3
 // @description  Ultimate Chrome fingerprint hardening for Google AI services - Full Sovereign Hybrid
 // @author       Anonymous
 // @license      MIT
@@ -19,6 +19,13 @@ const MERGED_SCRIPT = `// ==UserScript==
 // @match        https://assistant.google.com/*
 // @match        https://*.google.dev/*
 // @match        https://chatgpt.com/*
+// @match        https://browserleaks.com/*
+// @match        https://amiunique.org/*
+// @match        https://coveryourtracks.eff.org/*
+// @match        https://bot.sannysoft.com/*
+// @match        https://abrahamjuliot.github.io/creepjs/*
+// @match        https://pixelscan.net/*
+// @match        https://abrahamjuliot.github.io/creepjs/*
 // @updateURL    https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
 // @downloadURL  https://raw.githubusercontent.com/RE3CON/Gemini-AI/main/google-ai-identity.user.js
 // @run-at       document-start
