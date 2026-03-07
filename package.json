@@ -4,13 +4,13 @@
   "description": "Ultimate Chrome fingerprint hardening for Google AI services - Full Sovereign Hybrid",
   "author": "RE3CON",
   "license": "MIT",
-  "homepage": "https://re3con.github.io/Gemini-Pro/",
+  "homepage": "https://re3con.github.io/Gemini-AI/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RE3CON/Gemini-AI.git"
   },
   "bugs": {
-    "url": "https://github.com/RE3CON/Gemini-Pro/issues"
+    "url": "https://github.com/RE3CON/Gemini-AI/issues"
   },
   "private": false,
   "publishConfig": {
