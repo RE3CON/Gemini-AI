@@ -23,7 +23,7 @@
 
 Sovereign fingerprint protection for Google AI & LLM environments. Merged Golden Master architecture with zero-blindspot hardening.
 
-**Latest Update (2026-03-07):** Hardened the native bridge service (`samsungBridge.ts`) to prevent `ReferenceError: window is not defined` in Node.js build environments, ensuring reliable CI/CD builds.
+**Latest Update (2026-03-07):** Re-enabled microphone and clipboard permissions with startup prompts, and implemented a retry mechanism for logo generation to handle transient network errors.
 
 ## Overview
 
