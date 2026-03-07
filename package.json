@@ -1,5 +1,5 @@
 {
-  "name": "@re3con/gemini-pro",
+  "name": "@re3con/gemini-ai",
   "version": "1.1.1",
   "description": "Ultimate Chrome fingerprint hardening for Google AI services - Full Sovereign Hybrid",
   "author": "RE3CON",
@@ -7,7 +7,7 @@
   "homepage": "https://re3con.github.io/Gemini-Pro/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RE3CON/Gemini-Pro.git"
+    "url": "git+https://github.com/RE3CON/Gemini-AI.git"
   },
   "bugs": {
     "url": "https://github.com/RE3CON/Gemini-Pro/issues"
