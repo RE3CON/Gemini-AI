@@ -1,7 +1,7 @@
 import { Octokit } from "@octokit/rest";
 import fs from 'fs';
 
-const octokit = new Octokit({ auth: 'ghp_***MASKED***' });
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 const owner = 'RE3CON';
 const repo = 'Gemini-AI';
 const tag_name = 'v1.0.0';

@@ -535,7 +535,7 @@ export const generateUserScript = (config: ScriptConfig): string => {
     };
     
     // --- 0. ACCESSIBILITY MODE ---
-    if (window.Android) { console.log("Native WebView Bridge Detected - Accessibility Mode Optimized"); }
+    if (typeof window !== 'undefined' && window.Android) { console.log("Native WebView Bridge Detected - Accessibility Mode Optimized"); }
 
     // --- 1. SOVEREIGN CONSTANTS (v5 RESTORED) ---
     const REPLIT_ID = 'recon_master_dev';

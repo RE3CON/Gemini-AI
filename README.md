@@ -23,6 +23,8 @@
 
 Sovereign fingerprint protection for Google AI & LLM environments. Merged Golden Master architecture with zero-blindspot hardening.
 
+**Latest Update (2026-03-07):** Hardened the native bridge service (`samsungBridge.ts`) to prevent `ReferenceError: window is not defined` in Node.js build environments, ensuring reliable CI/CD builds.
+
 ## Overview
 
 This project provides an advanced Tampermonkey/Violentmonkey script designed to harden your browser fingerprint against tracking and behavioral analysis, specifically tailored for Google's AI environments (Gemini, AI Studio, NotebookLM, etc.). 
