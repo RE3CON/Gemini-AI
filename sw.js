@@ -1,9 +1,1 @@
-self.addEventListener('install', (e) => {
-  self.skipWaiting();
-});
-self.addEventListener('activate', (e) => {
-  e.waitUntil(self.clients.claim());
-});
-self.addEventListener('fetch', (e) => {
-  // Simple pass-through to allow PWA install
-});
+if(!self.define){let e,s={};const i=(i,n)=>(i=new URL(i+".js",n).href,s[i]||new Promise(s=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=s,document.head.appendChild(e)}else e=i,importScripts(i),s()}).then(()=>{let e=s[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e}));self.define=(n,r)=>{const t=e||("document"in self?document.currentScript.src:"")||location.href;if(s[t])return;let o={};const l=e=>i(e,t),f={module:{uri:t},exports:o,require:l};s[t]=Promise.all(n.map(e=>f[e]||l(e))).then(e=>(r(...e),o))}}define(["./workbox-8c29f6e4"],function(e){"use strict";self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"registerSW.js",revision:"aa763b63e80adee3babfeff07c2eaf6a"},{url:"index.html",revision:"369352cc97b5fe5e1742f41c74d3fa3f"},{url:"assets/index-BELJI3mY.js",revision:null},{url:"assets/index-B4Eg-pqC.css",revision:null},{url:"manifest.webmanifest",revision:"e9f24d2858bd67bbabba0ced5a8212c8"}],{}),e.cleanupOutdatedCaches(),e.registerRoute(new e.NavigationRoute(e.createHandlerBoundToURL("index.html")))});
