@@ -754,10 +754,15 @@ const App: React.FC = () => {
     setToast({ id, type, message });
     setTimeout(() => {
       setToast((current) => (current?.id === id ? null : current));
-    }, 4000);
+    }, 10000);
   };
 
   const handleGenerateLogo = async () => {
+    // Check for API key
+    if (window.aistudio && !(await window.aistudio.hasSelectedApiKey())) {
+      await window.aistudio.openSelectKey();
+    }
+
     // 2. Aggressive Caching (Client-side)
     const cachedLogo = localStorage.getItem('re3con_cached_logo');
     if (cachedLogo) {
@@ -784,10 +789,20 @@ const App: React.FC = () => {
         localStorage.setItem('re3con_cached_logo', newLogoUrl); // Save to cache
         showToast('success', 'Logo generated successfully!');
       } else {
-        showToast('error', data.error || 'Failed to generate logo.');
+        if (response.status === 401 && window.aistudio) {
+          await window.aistudio.openSelectKey();
+        }
+        if (response.status === 429) {
+          showToast('error', 'Quota exceeded for this project. Please select a different project in the API key selection dialog.');
+        } else {
+          showToast('error', data.details || data.error || 'Failed to generate logo.');
+        }
       }
     } catch (error: any) {
       console.error('Error generating logo:', error);
+      if (error.message && error.message.includes("Requested entity was not found.") && window.aistudio) {
+        await window.aistudio.openSelectKey();
+      }
       showToast('error', 'Network error during logo generation.');
     } finally {
       setIsGeneratingLogo(false);

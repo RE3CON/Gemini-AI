@@ -59,6 +59,7 @@ async function startServer() {
 
   // Logo Generation Route
   app.post("/api/generate-logo", async (req, res) => {
+    console.log("DEBUG: All headers:", JSON.stringify(req.headers));
     const { forceRefresh } = req.body || {};
 
     // 2. Aggressive Caching: Return cached logo if it exists and we aren't forcing a refresh
@@ -70,7 +71,7 @@ async function startServer() {
     try {
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
-        return res.status(500).json({ error: "GEMINI_API_KEY is not configured on the server." });
+        return res.status(401).json({ error: "No API key selected. Please select a valid API key in the app." });
       }
 
       const ai = new GoogleGenAI({ apiKey });
@@ -79,22 +80,51 @@ async function startServer() {
       // 3. Minimize Context Windows: Optimized the prompt to be highly concise and token-efficient
       let response;
       let retries = 5;
+      let modelToUse = 'gemini-3.1-flash-image-preview';
+      let useImagen = false;
+
       while (retries > 0) {
         try {
-          response = await ai.models.generateContent({
-            model: 'gemini-2.5-flash-image',
-            contents: {
-              parts: [
-                {
-                  text: 'Cybersecurity app logo. Vector art, neon gradients, futuristic shield, no text, transparent background.',
-                },
-              ],
-            }
-          });
-          break;
+          if (useImagen) {
+            const imgResponse = await ai.models.generateImages({
+              model: 'imagen-4.0-generate-001',
+              prompt: 'Cybersecurity app logo. Vector art, neon gradients, futuristic shield, no text, transparent background.',
+              config: {
+                numberOfImages: 1,
+                outputMimeType: 'image/png',
+                aspectRatio: '1:1',
+              },
+            });
+            // Adapt Imagen response to the expected format
+            const imageBytes = imgResponse.generatedImages[0].image.imageBytes;
+            cachedLogoData = imageBytes;
+            res.json({ success: true, imageData: cachedLogoData, cached: false });
+            return;
+          } else {
+            response = await ai.models.generateContent({
+              model: modelToUse,
+              contents: {
+                parts: [
+                  {
+                    text: 'Cybersecurity app logo. Vector art, neon gradients, futuristic shield, no text, transparent background.',
+                  },
+                ],
+              }
+            });
+            break;
+          }
         } catch (e) {
           retries--;
-          if (retries === 0) throw e;
+          if (retries === 0) {
+            if (modelToUse === 'gemini-2.5-flash-image') {
+              console.warn("Gemini flash failed, trying Imagen...");
+              modelToUse = 'imagen-4.0-generate-001';
+              useImagen = true;
+              retries = 2; // Give Imagen a few tries
+            } else {
+              throw e;
+            }
+          }
           console.warn(`Logo generation failed, retrying... (${retries} attempts left)`);
           await new Promise(resolve => setTimeout(resolve, 2000));
         }
@@ -115,7 +145,17 @@ async function startServer() {
       }
     } catch (error: any) {
       console.error("Logo Generation Error:", error);
-      res.status(500).json({ error: "Server error during logo generation.", details: error.message });
+      const errorMessage = error.message || "";
+      
+      if (errorMessage.includes("API_KEY_INVALID")) {
+        return res.status(401).json({ error: "The selected API key is invalid. Please ensure you are using a valid, paid API key from a Google Cloud project." });
+      }
+      
+      if (errorMessage.includes("RESOURCE_EXHAUSTED") || errorMessage.includes("quota")) {
+        return res.status(429).json({ error: "Quota exceeded for this project. Please select a different project with available quota." });
+      }
+      
+      res.status(500).json({ error: "Server error during logo generation.", details: errorMessage });
     }
   });
 

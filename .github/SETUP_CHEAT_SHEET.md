@@ -14,12 +14,12 @@ This guide streamlines the setup process for new sessions.
 5. Generate and copy the token.
 
 ## 2. Add Secret to Repository
-1. Go to [Gemini-Pro Repository Settings](https://github.com/RE3CON/Gemini-Pro/settings).
+1. Go to your [Repository Settings](https://github.com/RE3CON/Gemini-AI/settings) (or the settings for your specific repository).
 2. Click **Secrets and variables > Actions**.
 3. Click **New repository secret**.
 4. Name: `WIKI_ACTION_TOKEN`.
 5. Secret: Paste your new PAT.
 
 ## 3. Trigger Wiki Sync
-1. Go to [Actions > Sync Wiki](https://github.com/RE3CON/Gemini-Pro/actions/workflows/sync-wiki.yml).
+1. Go to [Actions > Sync Wiki](https://github.com/RE3CON/Gemini-AI/actions/workflows/sync-wiki.yml) (or the Actions tab for your specific repository).
 2. Click **Run workflow** (dropdown) -> **Run workflow** (button).
