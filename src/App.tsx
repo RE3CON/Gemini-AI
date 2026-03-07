@@ -691,6 +691,28 @@ const App: React.FC = () => {
   }, [config, autoCopyEnabled]);
 
   useEffect(() => {
+    // Request microphone permission on startup
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        console.log('Microphone access granted');
+        // Stop the tracks immediately as we don't need the stream yet
+        stream.getTracks().forEach(track => track.stop());
+      })
+      .catch(err => {
+        console.error('Microphone access denied or not supported:', err);
+      });
+
+    // Check clipboard permission
+    navigator.permissions.query({ name: 'clipboard-read' as PermissionName })
+      .then(result => {
+        console.log('Clipboard read permission state:', result.state);
+      })
+      .catch(err => {
+        console.error('Clipboard permission query not supported:', err);
+      });
+  }, []);
+
+  useEffect(() => {
     addSocketListener((data) => {
       if (data.type === 'CONFIG_SYNC') {
         setConfig(data.config);
@@ -1001,7 +1023,6 @@ const App: React.FC = () => {
     
     // MODELS
     if (config.enableGemini3_0Pro) list.push("✨ GEMINI 3.0: 2026 Preview Models selected.");
-    if (config.enableGemini3_0Pro && config.enableGemini2_0Pro) list.push("��️ PRIORITY: Gemini 3.0 will take precedence over Gemini 2.0 settings.");
 
     // HYBRID
     if (config.spoofPixel11ProXL && config.enableSamsungEcosystem) list.push("📱 HYBRID IDENTITY: Pixel 11 Pro XL + S24 Ultra Fusion.");
