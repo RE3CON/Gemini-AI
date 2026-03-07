@@ -39,6 +39,9 @@ export const INITIAL_CONFIG: ScriptConfig = {
   enableYouTube: true,
 
   // Models
+  enableGemini3_1Pro: true,
+  enableGemini3_1Flash: true,
+  enableGemini3_1FlashLite: true,
   enableGemini3_0Pro: true,
   enableGemini3_0Flash: true,
   enableDeepThink: true,
@@ -331,6 +334,9 @@ const SECTION_DEFINITIONS = [
     icon: Sparkles,
     color: 'text-indigo-400',
     items: [
+      { key: 'enableGemini3_1Flash', label: 'Enable Gemini 3.1 Flash Preview' },
+      { key: 'enableGemini3_1Pro', label: 'Enable Gemini 3.1 Pro Preview' },
+      { key: 'enableGemini3_1FlashLite', label: 'Enable Gemini 3.1 Flash Lite' },
       { key: 'enableGemini3_0Flash', label: 'Enable Gemini 3.0 Flash Preview' },
       { key: 'enableGemini3_0Pro', label: 'Enable Gemini 3.0 Pro Preview' },
       { key: 'enableGemini2_0Flash', label: 'Enable Gemini 2.0 Flash (Legacy)' },
