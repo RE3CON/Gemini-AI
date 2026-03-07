@@ -10,15 +10,16 @@ async function getWorkflowRunJobs() {
     const { data } = await octokit.actions.listJobsForWorkflowRun({
       owner,
       repo,
-      run_id
+      run_id,
+      per_page: 100
     });
     
     console.log(`--- Jobs for Run ${run_id} ---`);
+    if (data.jobs.length === 0) {
+        console.log("No jobs found. This might be a workflow with no jobs or an error.");
+    }
     data.jobs.forEach(job => {
-      console.log(`Job: ${job.name}, Status: ${job.status}, Conclusion: ${job.conclusion}`);
-      if (job.conclusion === 'failure') {
-        // We can't easily get logs here without another call, but this confirms the failure.
-      }
+      console.log(`Job ID: ${job.id}, Name: ${job.name}, Status: ${job.status}, Conclusion: ${job.conclusion}`);
     });
     
   } catch (error) {

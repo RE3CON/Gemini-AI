@@ -15,10 +15,7 @@ async function getWorkflowRunJobs() {
     
     console.log(`--- Jobs for Run ${run_id} ---`);
     data.jobs.forEach(job => {
-      console.log(`Job: ${job.name}, Status: ${job.status}, Conclusion: ${job.conclusion}`);
-      if (job.conclusion === 'failure') {
-        // We can't easily get logs here without another call, but this confirms the failure.
-      }
+      console.log(`Job ID: ${job.id}, Name: ${job.name}, Status: ${job.status}, Conclusion: ${job.conclusion}`);
     });
     
   } catch (error) {

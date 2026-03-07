@@ -9,12 +9,12 @@ async function listWorkflowRuns() {
     const { data } = await octokit.actions.listWorkflowRunsForRepo({
       owner,
       repo,
-      per_page: 5
+      per_page: 20
     });
     
     console.log(`--- Recent Workflow Runs for ${repo} ---`);
     data.workflow_runs.forEach(run => {
-      console.log(`Workflow: ${run.name}, Status: ${run.status}, Conclusion: ${run.conclusion}, URL: ${run.html_url}`);
+      console.log(`Workflow: ${run.name}, ID: ${run.id}, Status: ${run.status}, Conclusion: ${run.conclusion}`);
     });
     
   } catch (error) {
