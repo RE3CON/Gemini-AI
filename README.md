@@ -57,7 +57,7 @@ The following flags are currently enabled in the environment:
 
 ## How to Use
 
-1. **Install an Extension:** Install a userscript manager like [AdGuard Android UserScript Extension, Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) in your browser.
+1. **Install an Extension:** Install a userscript manager like [AdGuard Android UserScript](https://adguard.com/adguard-android/overview.html) Extension, [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) in your browser.
 2. **Get the Script:** 
    - Click the **Install UserScript** badge at the top of this page to install directly from GitHub.
    - Alternatively, copy the script from the [Web App](https://re3con.github.io/Gemini-AI/).
