@@ -394,6 +394,15 @@ export const generateUserScript = (config: ScriptConfig): string => {
     .map(([k, v]) => `        '${k}': '${v}'`)
     .join(',\n');
 
+  // --- Experimental Flags Section ---
+  const experimentalFlags = {
+    enable_ultra_fast_inference: config.enableUltraFastInference,
+    enable_quantum_simulation: config.enableQuantumSimulation,
+    enable_ai_assist_v5: config.enableAiAssistV5,
+    enable_privacy_shield_mode: config.enablePrivacyShieldMode,
+  };
+  const experimentalFlagsJson = JSON.stringify(experimentalFlags, null, 2);
+
   const diagnosticsScript = `
     // --- 9. STEALTH DIAGNOSTICS & SELF-HEALING ---
     // Diagnostics disabled in production.
@@ -409,6 +418,24 @@ export const generateUserScript = (config: ScriptConfig): string => {
             if (failed.includes('GlobalBridge') && typeof applySmartBridge === 'function') applySmartBridge();
         }
     }, 5000);
+
+    // --- 10. AUTO-UPDATE CHECKER ---
+    const checkForUpdates = () => {
+        const currentVersion = "${config.version}";
+        fetch("https://raw.githubusercontent.com/RE3CON/Gemini-Pro/master/dist/gemini-adaptive.user.js")
+            .then(res => res.text())
+            .then(text => {
+                const match = text.match(/@version\\s+([^\\n\\r]+)/);
+                if (match && match[1] && match[1].trim() !== currentVersion) {
+                    if (confirm("A new version of Gemini Adaptive Suite (" + match[1].trim() + ") is available. Update now?")) {
+                        window.location.href = "https://raw.githubusercontent.com/RE3CON/Gemini-Pro/master/dist/gemini-adaptive.user.js";
+                    }
+                }
+            })
+            .catch(err => console.warn("Update check failed", err));
+    };
+    setTimeout(checkForUpdates, 10000); // Check 10s after load
+
     console.groupEnd();
 })();`;
 
@@ -535,6 +562,7 @@ export const generateUserScript = (config: ScriptConfig): string => {
     const OMNI_FLAGS = {
 ${flagsString}
     };
+    const GOOGLE_EXPERIMENTAL_FLAGS = ${experimentalFlagsJson};
 
     // --- 3. UNIFIED "SMART SHARE" BRIDGE (v27.0 - ADAPTIVE) ---
     const applySmartBridge = () => {

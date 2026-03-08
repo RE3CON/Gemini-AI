@@ -338,87 +338,7 @@ const GitHubMarkdown: React.FC<{ url: string }> = ({ url }) => {
   );
 };
 
-const GitHubIssues: React.FC = () => {
-  const [issues, setIssues] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch('https://api.github.com/repos/RE3CON/Gemini-Pro/issues')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch issues');
-        return res.json();
-      })
-      .then(data => {
-        setIssues(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) return <div className="text-slate-400 p-8 text-center">Loading issues...</div>;
-
-  return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
-      <div className="px-6 py-4 border-b border-slate-800 bg-slate-900/80 flex justify-between items-center">
-        <h2 className="text-lg font-medium text-white flex items-center gap-2">
-          <Github size={18} />
-          GitHub Issues & Discussions
-        </h2>
-        <a 
-          href="https://github.com/RE3CON/Gemini-Pro/discussions" 
-          target="_blank" 
-          rel="noreferrer"
-          className="px-4 py-2 bg-gold-500 hover:bg-gold-400 text-slate-900 text-sm font-medium rounded-lg transition-colors"
-        >
-          Open Discussions
-        </a>
-      </div>
-      <div className="divide-y divide-slate-800">
-        {issues.length === 0 ? (
-          <div className="p-8 text-center text-slate-500">No open issues found.</div>
-        ) : (
-          issues.map(issue => (
-            <a 
-              key={issue.id} 
-              href={issue.html_url} 
-              target="_blank" 
-              rel="noreferrer"
-              className="block p-6 hover:bg-slate-800/50 transition-colors"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-white font-medium mb-1">{issue.title}</h3>
-                  <div className="text-sm text-slate-400 flex items-center gap-2">
-                    <span className="text-gold-400">#{issue.number}</span>
-                    <span>opened by {issue.user.login}</span>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  {issue.labels.map((label: any) => (
-                    <span 
-                      key={label.id} 
-                      className="px-2 py-1 text-[10px] rounded-full border"
-                      style={{ 
-                        borderColor: `#${label.color}40`, 
-                        backgroundColor: `#${label.color}20`,
-                        color: `#${label.color}` 
-                      }}
-                    >
-                      {label.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </a>
-          ))
-        )}
-      </div>
-    </div>
-  );
-};
 
 const App: React.FC = () => {
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
@@ -458,7 +378,7 @@ const App: React.FC = () => {
   const [fritzBoxData, setFritzBoxData] = useState<any>(null);
   const [remoteVersion, setRemoteVersion] = useState<string | null>(null);
   const [isCheckingVersion, setIsCheckingVersion] = useState(false);
-  const [activeTab, setActiveTab] = useState<'configurator' | 'readme' | 'troubleshooting' | 'license' | 'forum' | 'security' | 'advanced'>('configurator');
+  const [activeTab, setActiveTab] = useState<'configurator' | 'readme' | 'troubleshooting' | 'license' | 'security' | 'advanced'>('configurator');
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     performance_max: false,
     accessibility_core: false,
@@ -1281,12 +1201,6 @@ const App: React.FC = () => {
               <FileText size={16} /> License
             </button>
             <button 
-              onClick={() => setActiveTab('forum')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'forum' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'}`}
-            >
-              <MessageSquare size={16} /> Forum / Issues
-            </button>
-            <button 
               onClick={() => setActiveTab('security')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${activeTab === 'security' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-slate-200 hover:bg-slate-700'}`}
             >
@@ -1298,6 +1212,14 @@ const App: React.FC = () => {
             >
               <Settings size={16} /> Advanced
             </button>
+            <a 
+              href="https://github.com/RE3CON/Gemini-AI/discussions" 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap text-slate-400 hover:text-slate-200 hover:bg-slate-700"
+            >
+              <MessageSquare size={16} /> Discussions
+            </a>
           </div>
 
           {activeTab === 'configurator' && (
@@ -1405,9 +1327,6 @@ const App: React.FC = () => {
             <GitHubMarkdown url={getRawUrl('SECURITY.md')} />
           )}
 
-          {activeTab === 'forum' && (
-            <GitHubIssues />
-          )}
           {activeTab === 'advanced' && (
             <AdvancedConfiguration />
           )}

@@ -272,6 +272,12 @@ export interface ScriptConfig {
   // Advanced ADB Spoofing & Chrome Flag Injection
   enableCommandLineOnNonRootedDevices: boolean;
   commandLineArguments: string;
+
+  // Experimental Flags
+  enableUltraFastInference: boolean;
+  enableQuantumSimulation: boolean;
+  enableAiAssistV5: boolean;
+  enablePrivacyShieldMode: boolean;
 }
 
 export interface FeatureFlag {
