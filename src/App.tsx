@@ -5,7 +5,7 @@ import {
   Accessibility, Brush, MessageSquare, Newspaper, Cloud, Terminal, Briefcase, 
   PenTool, Music, Archive, Skull, Search, ChevronDown, ChevronUp, RotateCcw,
   Lightbulb, Play, BookOpen, Wrench, FileText, Settings, Github,
-  Loader2, XCircle, CheckCircle2, AlertCircle, Image as ImageIcon, Copy, Key
+  Loader2, XCircle, CheckCircle2, AlertCircle, Image as ImageIcon, Copy, Key, Download
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
@@ -474,6 +474,28 @@ const App: React.FC = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
   const [isGeneratingLogo, setIsGeneratingLogo] = useState(false);
   const [toast, setToast] = useState<{ id: number; type: 'success' | 'error' | 'info'; message: string } | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', handler);
+    return () => window.removeEventListener('beforeinstallprompt', handler);
+  }, []);
+
+  const handleInstall = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        }
+        setDeferredPrompt(null);
+      });
+    }
+  };
 
   useEffect(() => {
     // GPU Detection
@@ -1184,6 +1206,15 @@ const App: React.FC = () => {
                   >
                     <Key size={10} className="text-amber-400" />
                   </button>
+                  {deferredPrompt && (
+                    <button
+                      onClick={handleInstall}
+                      className="p-1 rounded-md hover:bg-white/10 transition-colors"
+                      title="Install as Web App"
+                    >
+                      <Download size={10} className="text-emerald-400" />
+                    </button>
+                  )}
                   {remoteVersion && remoteVersion !== config.version && (
                     <span className="text-[9px] bg-rose-500 text-white px-1.5 py-0.5 rounded-full animate-pulse font-bold">NEW</span>
                   )}
