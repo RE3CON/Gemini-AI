@@ -71,17 +71,21 @@ async function startServer() {
   app.post("/api/docs/generate-pdf", async (req, res) => {
     try {
       const docsDir = path.join(process.cwd(), 'docs');
+      console.log(`DEBUG: PDF generation started. Docs dir: ${docsDir}`);
       const files = await fsPromises.readdir(docsDir);
       const mdFiles = files.filter(f => f.endsWith('.md'));
+      console.log(`DEBUG: Found ${mdFiles.length} markdown files.`);
       
       const PDFDocument = (await import('pdfkit')).default;
       const doc = new PDFDocument();
       const pdfPath = path.join(docsDir, 'Gemini-AI-Docs.pdf');
+      console.log(`DEBUG: PDF path: ${pdfPath}`);
       const writeStream = fs.createWriteStream(pdfPath);
       
       doc.pipe(writeStream);
       
       for (const file of mdFiles) {
+        console.log(`DEBUG: Processing ${file}`);
         const content = await fsPromises.readFile(path.join(docsDir, file), 'utf8');
         doc.addPage();
         doc.fontSize(18).text(file, { underline: true });
@@ -92,7 +96,12 @@ async function startServer() {
       doc.end();
       
       writeStream.on('finish', () => {
+        console.log(`DEBUG: PDF generation finished successfully.`);
         res.json({ success: true, path: 'docs/Gemini-AI-Docs.pdf' });
+      });
+      writeStream.on('error', (err) => {
+        console.error(`DEBUG: PDF write stream error: ${err}`);
+        res.status(500).json({ error: err.message });
       });
     } catch (error: any) {
       console.error("PDF Generation Error:", error);
