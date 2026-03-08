@@ -244,5 +244,27 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Nvidia Shield TV Pro': { ram: '3', cores: '8' }, 'Nvidia Shield TV': { ram: '2', cores: '4' },
   'Amazon Fire TV Stick 4K Max': { ram: '2', cores: '4' }, 'Amazon Fire TV Stick 4K': { ram: '1.5', cores: '4' },
   'Amazon Fire TV Stick': { ram: '1', cores: '4' }, 'Xiaomi Mi TV Stick 4K': { ram: '2', cores: '4' },
-  'Xiaomi Mi TV Stick': { ram: '1', cores: '4' }, 'Generic Android TV Box': { ram: '2', cores: '4' },
+  'Xiaomi Mi TV Stick': { ram: '1', cores: '4' },
+
+  // Chinese Android TV Boxes (Max, Pro, etc.)
+  'Tanix TX6S': { ram: '4', cores: '4' }, 'Tanix TX3': { ram: '4', cores: '4' },
+  'Beelink GT-King': { ram: '4', cores: '6' }, 'Beelink GT1': { ram: '3', cores: '8' },
+  'X96 Max+': { ram: '4', cores: '4' }, 'X96 Mini': { ram: '2', cores: '4' },
+  'HK1 Box': { ram: '4', cores: '4' }, 'HK1 Max': { ram: '4', cores: '4' },
+  'MXQ Pro 4K': { ram: '2', cores: '4' }, 'Generic Android TV Box': { ram: '2', cores: '4' },
 };
+
+export const ANDROID_TV_VERSIONS: Record<string, string> = {
+  'Android 6.0': 'Marshmallow',
+  'Android 7.0': 'Nougat',
+  'Android 8.0': 'Oreo',
+  'Android 9.0': 'Pie',
+  'Android 10': 'Android 10',
+  'Android 11': 'Android 11',
+  'Android 12': 'Android 12',
+  'Android 13': 'Android 13',
+  'Android 14': 'Android 14',
+  'Android 15': 'Android 15',
+  'Android 16': 'Android 16',
+};
+
