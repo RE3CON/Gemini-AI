@@ -86,8 +86,19 @@ export const AdvancedConfiguration: React.FC = () => {
             <button 
               onClick={async () => {
                 const res = await fetch('/api/docs/generate-pdf', { method: 'POST' });
-                if (res.ok) alert('PDF generated and saved to docs/!');
-                else alert('Failed to generate PDF');
+                if (res.ok) {
+                  const blob = await res.blob();
+                  const url = window.URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'Gemini-AI-Docs.pdf';
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  window.URL.revokeObjectURL(url);
+                } else {
+                  alert('Failed to generate PDF');
+                }
               }}
               className="mt-4 bg-[#81c995] text-[#121212] px-4 py-2 rounded-lg font-medium hover:bg-[#6ab580]"
             >

@@ -78,11 +78,12 @@ async function startServer() {
       
       const PDFDocument = (await import('pdfkit')).default;
       const doc = new PDFDocument();
-      const pdfPath = path.join(docsDir, 'Gemini-AI-Docs.pdf');
-      console.log(`DEBUG: PDF path: ${pdfPath}`);
-      const writeStream = fs.createWriteStream(pdfPath);
       
-      doc.pipe(writeStream);
+      // Set headers for PDF download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=Gemini-AI-Docs.pdf');
+      
+      doc.pipe(res);
       
       for (const file of mdFiles) {
         console.log(`DEBUG: Processing ${file}`);
@@ -95,13 +96,15 @@ async function startServer() {
       
       doc.end();
       
-      writeStream.on('finish', () => {
+      doc.on('end', () => {
         console.log(`DEBUG: PDF generation finished successfully.`);
-        res.json({ success: true, path: 'docs/Gemini-AI-Docs.pdf' });
       });
-      writeStream.on('error', (err) => {
-        console.error(`DEBUG: PDF write stream error: ${err}`);
-        res.status(500).json({ error: err.message });
+      doc.on('error', (err) => {
+        console.error(`DEBUG: PDF generation error: ${err}`);
+        // If headers already sent, we can't send a 500
+        if (!res.headersSent) {
+          res.status(500).json({ error: err.message });
+        }
       });
     } catch (error: any) {
       console.error("PDF Generation Error:", error);
