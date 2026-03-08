@@ -67,6 +67,27 @@ async function startServer() {
     }
   });
 
+  // View Docs HTML for printing
+  app.get("/api/docs/view", async (req, res) => {
+    try {
+      const docsDir = path.join(process.cwd(), 'docs');
+      const files = await fsPromises.readdir(docsDir);
+      const mdFiles = files.filter(f => f.endsWith('.md'));
+      
+      let htmlContent = '<html><body style="font-family: sans-serif; padding: 20px;">';
+      for (const file of mdFiles) {
+        const content = await fsPromises.readFile(path.join(docsDir, file), 'utf8');
+        htmlContent += `<h1>${file}</h1><pre style="white-space: pre-wrap; background: #f4f4f4; padding: 10px;">${content}</pre><hr/>`;
+      }
+      htmlContent += '</body></html>';
+      
+      res.send(htmlContent);
+    } catch (error: any) {
+      console.error("Docs View Error:", error);
+      res.status(500).send("Error loading documentation.");
+    }
+  });
+
   // Generate Docs PDF
   app.post("/api/docs/generate-pdf", async (req, res) => {
     try {

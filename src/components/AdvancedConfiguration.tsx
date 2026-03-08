@@ -82,28 +82,39 @@ export const AdvancedConfiguration: React.FC = () => {
         return (
           <div className="space-y-4">
             <h2 className="text-sm font-semibold tracking-wider text-[#81c995] mb-4">DOCUMENTATION TOOLS</h2>
-            <p className="text-sm text-gray-400">Generate a PDF of all documentation files in the docs/ directory.</p>
-            <button 
-              onClick={async () => {
-                const res = await fetch('/api/docs/generate-pdf', { method: 'POST' });
-                if (res.ok) {
-                  const blob = await res.blob();
-                  const url = window.URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = 'Gemini-AI-Docs.pdf';
-                  document.body.appendChild(a);
-                  a.click();
-                  a.remove();
-                  window.URL.revokeObjectURL(url);
-                } else {
-                  alert('Failed to generate PDF');
-                }
-              }}
-              className="mt-4 bg-[#81c995] text-[#121212] px-4 py-2 rounded-lg font-medium hover:bg-[#6ab580]"
-            >
-              Generate Docs PDF
-            </button>
+            <div className="flex flex-col gap-4">
+              <p className="text-sm text-gray-400">Generate a PDF or view documentation for printing.</p>
+              <div className="flex gap-2">
+                <button 
+                  onClick={async () => {
+                    const res = await fetch('/api/docs/generate-pdf', { method: 'POST' });
+                    if (res.ok) {
+                      const blob = await res.blob();
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'Gemini-AI-Docs.pdf';
+                      document.body.appendChild(a);
+                      a.click();
+                      a.remove();
+                      window.URL.revokeObjectURL(url);
+                    } else {
+                      alert('Failed to generate PDF');
+                    }
+                  }}
+                  className="bg-[#81c995] text-[#121212] px-4 py-2 rounded-lg font-medium hover:bg-[#6ab580]"
+                >
+                  Download Docs PDF
+                </button>
+                <a 
+                  href="/api/docs/view" 
+                  target="_blank" 
+                  className="bg-gray-700 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-600"
+                >
+                  View for Printing
+                </a>
+              </div>
+            </div>
           </div>
         );
       default:
