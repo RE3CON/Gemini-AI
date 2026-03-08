@@ -23,7 +23,7 @@
 
 Sovereign fingerprint protection for Google AI & LLM environments. Merged Golden Master architecture with zero-blindspot hardening.
 
-**Latest Update (2026-03-07):** Re-enabled microphone and clipboard permissions with startup prompts, and implemented a retry mechanism for logo generation to handle transient network errors.
+**Latest Update (2026-03-08):** Final merge of Sovereign Ultimate Black-Wall (v76.0) with enhanced Android 16/Pixel 11 Pro XL spoofing, Smart Share Bridge, and Infinite Dictation.
 
 ## Overview
 
@@ -96,11 +96,15 @@ When hardening your identity, it's also important to consider *how* you access G
 
 ## Features
 - **PWA Support:** Install the application directly to your device.
+- **Smart Share Bridge:** Native-like sharing for code, shell commands, and text, with Termux/Logcat integration.
+- **Infinite Dictation:** Continuous voice-to-text mode for long-form input, bypassing standard IME timeouts.
+- **Context Snatcher:** Easily bridge clipboard content or page URLs into Gemini with haptic feedback and emergency reset.
+- **Sovereign Badge & Panic Button:** Real-time security status with a triple-tap panic wipe protocol.
+- **Native Bridges:** Samsung, Microsoft, and System (Clipboard/Print) bridges for a native-like experience.
+- **Hyper Velocity:** DOM stripping and task scheduling optimizations for maximum performance.
 - **Dark/Light Mode:** Automatically syncs with your system preferences.
 - **AI Logo Generation:** Generate unique, transparent, and colorful security-focused logos using the Gemini API.
 - **Auto-Updates:** The script includes `@updateURL` and `@downloadURL` pointing to this repository, ensuring you always have the latest version.
-- **Samsung Ecosystem Integration:** Native-like features for S-Pen, Samsung Health, and more (via PWA/Bridge).
-- **Microsoft Ecosystem Integration:** Native-like features for Edge WebView2 and Windows system integration.
 
 ## Compilers, Ports & Prototyping
 

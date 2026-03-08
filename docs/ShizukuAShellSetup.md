@@ -48,3 +48,10 @@ Once set up, AShell acts as a terminal emulator that uses Shizuku's privileged A
 
 > [!NOTE]
 > If you reboot your device, Shizuku will stop. You must repeat **Step B** (Wireless Debugging) or **Step 4** (ADB) to start it again.
+
+## Community & Discussions
+
+Have questions, ideas, or want to share your experience? Join the conversation in our GitHub Discussions:
+
+- [Gemini-AI Discussions](https://github.com/RE3CON/Gemini-AI/discussions)
+- [Gemini-Pro Discussions](https://github.com/RE3CON/Gemini-Pro/discussions)

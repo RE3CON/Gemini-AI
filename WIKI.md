@@ -12,10 +12,13 @@ Welcome to the Gemini-AI Wiki! This is the central repository for detailed docum
 4. [UI Mockups](#ui-mockups)
 5. [ADB Spoofing & Chrome Flag Injection](#adb-spoofing--chrome-flag-injection)
 6. [Shizuku & AShell Setup](#shizuku--ashell-setup)
-7. [Native Ecosystem Integration](#native-ecosystem-integration)
-8. [CI/CD Pipeline](#cicd-pipeline)
-9. [Extra: Community & Discussions](#extra-community--discussions)
-10. [Contributing](#contributing)
+7. [Shizuku Persistence Guide](#shizuku-persistence-guide)
+8. [AShell Hardening Scripts](#ashell-hardening-scripts)
+9. [Troubleshooting Guide](#troubleshooting-guide)
+10. [Native Ecosystem Integration](#native-ecosystem-integration)
+11. [CI/CD Pipeline](#cicd-pipeline)
+12. [Extra: Community & Discussions](#extra-community--discussions)
+13. [Contributing](#contributing)
 
 ---
 
@@ -92,6 +95,24 @@ The "Load Recommended Flags" feature automatically populates the following confi
 For advanced users, we provide a guide on setting up Shizuku and AShell to execute shell commands on your Android device without root access.
 
 [Read the full Shizuku & AShell Setup Guide](docs/ShizukuAShellSetup.md)
+
+## Shizuku Persistence Guide
+
+Shizuku is designed to run in user space, which means Android's aggressive battery management often kills the service to save power. We provide a guide on how to configure your device for maximum persistence.
+
+[Read the full Shizuku Persistence Guide](docs/ShizukuPersistence.md)
+
+## AShell Hardening Scripts
+
+We provide example scripts that can be run directly in AShell to harden your Android device.
+
+[Read the full AShell Hardening Scripts Guide](docs/AShellHardeningScripts.md)
+
+## Troubleshooting Guide
+
+Having issues? This guide helps you resolve common problems when using Shizuku, AShell, and ADB-based hardening.
+
+[Read the full Troubleshooting Guide](docs/Troubleshooting.md)
 
 ## Native Ecosystem Integration
 
