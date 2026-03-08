@@ -56,7 +56,6 @@ The following flags are currently enabled in the environment:
 - **Microsoft Ecosystem Integration:** Native-like features for Edge WebView2 and Windows system integration.
 
 ## How to Use
-
 1. **Install an Extension:** Install a userscript manager like [AdGuard Android UserScript](https://adguard.com/adguard-android/overview.html) Extension, [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/) in your browser.
 2. **Get the Script:** 
    - Click the **Install UserScript** badge at the top of this page to install directly from GitHub.
@@ -64,11 +63,9 @@ The following flags are currently enabled in the environment:
 3. **Activate:** Save the script and refresh any Google AI pages (e.g., `gemini.google.com`, `aistudio.google.com`). The script will run automatically at `document-start`.
 
 ## PWA Support
-
 This application is a Progressive Web App (PWA). You can install it directly to your device for a native-like experience, which is required for certain Samsung Ecosystem integrations.
 
 ## Browser Test Pages
-
 The script is configured to run on several popular browser fingerprinting test pages so you can verify its effectiveness. Visit any of the following to see the spoofing in action:
 
 ```javascript
@@ -81,7 +78,6 @@ The script is configured to run on several popular browser fingerprinting test p
 ```
 
 ## Cost Comparison: Obtaining Gemini AI
-
 When hardening your identity, it's also important to consider *how* you access Gemini, as different subscription tiers have different privacy guarantees and price points.
 
 | Access Method | Estimated Cost | Privacy / Data Training | Best For |
@@ -107,7 +103,6 @@ When hardening your identity, it's also important to consider *how* you access G
 - **Auto-Updates:** The script includes `@updateURL` and `@downloadURL` pointing to this repository, ensuring you always have the latest version.
 
 ## Compilers, Ports & Prototyping
-
 This project is built using modern web technologies (React, Vite, TypeScript) and compiled via **GitHub Actions**. 
 
 To compile the web app and extract the UserScript locally:
@@ -120,7 +115,6 @@ To compile the web app and extract the UserScript locally:
 The core logic inside `google-ai-identity.user.js` is highly modular. You can easily port this to a native Chrome/Firefox Extension by wrapping the core IIFE inside a `content_script.js` and adding a `manifest.json`. We encourage the community to prototype new stealth modules (e.g., Canvas/WebGL poisoning) and submit them!
 
 ## Documentation
-
 Detailed documentation is available in our [Project Wiki](https://github.com/RE3CON/Gemini-AI/wiki). 
 
 The wiki is automatically synchronized with the `docs/` folder in this repository via GitHub Actions.
@@ -136,19 +130,16 @@ The wiki is automatically synchronized with the `docs/` folder in this repositor
 - [Maximum Capacity Android Chromium Build: Dynamic Configuration](docs/MaximumCapacityBuild.md)
 
 ## Bug Tracker & Forum
-
 We utilize the full suite of GitHub features to manage this project:
 - **[Bug Tracker (Issues)](https://github.com/RE3CON/Gemini-AI/issues):** Found a fingerprint leak? Does the script break a specific Google AI feature? Open an issue using our provided bug report templates.
 - **[Community Forum (Discussions)](https://github.com/RE3CON/Gemini-AI/discussions):** Have an idea for a new spoofing technique? Want to discuss the future of AI privacy? Join the GitHub Discussions tab!
 
 ## Releases & Packages
-
 We use **GitHub Releases** and **GitHub Packages** to distribute stable versions of the UserScript and the compiled Web App. 
 - Check the [Releases](https://github.com/RE3CON/Gemini-AI/releases) page for versioned downloads, changelogs, and source code archives.
 - The CI/CD pipeline automatically builds and attaches artifacts (the raw `.user.js` and the compiled `dist/` folder) to every successful run on the `main` branch.
 
 ## Community & Contributing
-
 We invite the community to join and help improve this project! Whether you're finding bugs, suggesting new features, or submitting pull requests for better fingerprint hardening techniques, your contributions are highly valued. 
 
 - **Fork the repository** to experiment with your own ideas.
@@ -156,5 +147,4 @@ We invite the community to join and help improve this project! Whether you're fi
 - **Submit a Pull Request!** Let's build the ultimate privacy shield together.
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

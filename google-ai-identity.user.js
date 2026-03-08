@@ -200,7 +200,7 @@
         'gemini_billing_grade_override': 'DEFAULT',
         'gemini_quota_bucket_override': 'DEFAULT',
         'gemini_enable_cost_warning_suppression': 'false',
-        'gemini_enable_pdf_analysis_v2': 'false',
+        'gemini_enable_pdf_analysis_v2': 'true',
         'gemini_long_document_processing': 'false',
         'gemini_enable_desktop_mode': 'true',
         'gemini_force_us_region': 'false',
@@ -214,7 +214,7 @@
         'gemini_media_resolution_override': '8k_uhd',
         'gemini_unlimited_thinking_budget': 'false',
         'gemini_context_window_override': '2000000',
-        'gemini_enable_save_as_pdf': 'false',
+        'gemini_enable_save_as_pdf': 'true',
         'gemini_enable_print_artifacts': 'false'
     };
 
