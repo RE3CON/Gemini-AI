@@ -252,6 +252,198 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'X96 Max+': { ram: '4', cores: '4' }, 'X96 Mini': { ram: '2', cores: '4' },
   'HK1 Box': { ram: '4', cores: '4' }, 'HK1 Max': { ram: '4', cores: '4' },
   'MXQ Pro 4K': { ram: '2', cores: '4' }, 'Generic Android TV Box': { ram: '2', cores: '4' },
+
+  // Americas (USA, Canada, South America) - Android 12-16
+  'Moto G Stylus 5G (2024)': { ram: '8', cores: '8' }, 'Moto G Power 5G (2024)': { ram: '8', cores: '8' },
+  'Moto Edge 50 Pro': { ram: '12', cores: '8' }, 'Moto Edge 40': { ram: '8', cores: '8' },
+  'OnePlus 13': { ram: '16', cores: '8' }, 'OnePlus 12': { ram: '16', cores: '8' },
+  'OnePlus 11': { ram: '16', cores: '8' }, 'OnePlus Nord N30 5G': { ram: '8', cores: '8' },
+  'Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Redmi Note 12 Pro': { ram: '8', cores: '8' },
+  'Redmi Note 11': { ram: '6', cores: '8' },
+
+  // Europe & Turkey (UK, Norway, Spain, Turkey, Italy)
+  'Xiaomi 14 Ultra': { ram: '16', cores: '8' }, 'Xiaomi 13T Pro': { ram: '12', cores: '8' },
+  'Poco F6 Pro': { ram: '12', cores: '8' }, 'Poco X6 Pro': { ram: '12', cores: '8' },
+  'Oppo Reno 12 Pro': { ram: '12', cores: '8' }, 'Oppo Find X7 Ultra': { ram: '16', cores: '8' },
+  'Realme 12 Pro+': { ram: '12', cores: '8' }, 'Realme GT 6': { ram: '16', cores: '8' },
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+
+  // Emerging Markets (South Africa, Middle East, Indonesia)
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+  'Samsung Galaxy A25': { ram: '8', cores: '8' }, 'Samsung Galaxy A15': { ram: '6', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Xiaomi Redmi Note 13': { ram: '8', cores: '8' },
+  'Xiaomi Redmi 13C': { ram: '6', cores: '8' }, 'Poco X6 Pro': { ram: '12', cores: '8' },
+  'Infinix Note 40 Pro': { ram: '12', cores: '8' }, 'Infinix Note 40': { ram: '8', cores: '8' },
+  'Infinix Hot 40 Pro': { ram: '8', cores: '8' }, 'Infinix Hot 40i': { ram: '8', cores: '8' },
+  'Tecno Camon 30 Pro': { ram: '12', cores: '8' }, 'Tecno Camon 30': { ram: '8', cores: '8' },
+  'Tecno Spark 20 Pro': { ram: '8', cores: '8' }, 'Tecno Spark 20': { ram: '8', cores: '8' },
+  'Tecno Pova 6 Pro': { ram: '12', cores: '8' }, 'Vivo V30': { ram: '12', cores: '8' },
+  'Vivo Y28': { ram: '8', cores: '8' }, 'Vivo Y36': { ram: '8', cores: '8' },
+  'Oppo Reno 12': { ram: '12', cores: '8' }, 'Oppo A79': { ram: '8', cores: '8' },
+  'Oppo A58': { ram: '6', cores: '8' }, 'Realme 12 Pro+': { ram: '12', cores: '8' },
+  'Realme 12': { ram: '8', cores: '8' }, 'Realme C67': { ram: '8', cores: '8' },
+
+  // Thailand
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Samsung Galaxy A35': { ram: '8', cores: '8' }, 'Xiaomi 14T': { ram: '12', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Oppo Reno 12 Pro': { ram: '12', cores: '8' },
+  'Vivo V40': { ram: '12', cores: '8' }, 'Realme 13 Pro+': { ram: '12', cores: '8' },
+  'Honor 200': { ram: '12', cores: '8' }, 'Infinix Note 40 Pro': { ram: '12', cores: '8' },
+
+  // Egypt
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Samsung Galaxy A35': { ram: '8', cores: '8' }, 'Samsung Galaxy A05s': { ram: '6', cores: '8' },
+  'Samsung Galaxy A15': { ram: '6', cores: '8' }, 'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' },
+  'Xiaomi Redmi Note 13': { ram: '8', cores: '8' }, 'Xiaomi Redmi 13C': { ram: '6', cores: '8' },
+  'Infinix Note 40 Pro': { ram: '12', cores: '8' }, 'Infinix Smart 8': { ram: '4', cores: '8' },
+  'Infinix Hot 40i': { ram: '8', cores: '8' }, 'Tecno Camon 30 Pro': { ram: '12', cores: '8' },
+  'Tecno Spark 20': { ram: '8', cores: '8' }, 'Tecno Pop 8': { ram: '4', cores: '8' },
+  'Realme 12 Pro+': { ram: '12', cores: '8' }, 'Realme C67': { ram: '8', cores: '8' },
+  'Realme C55': { ram: '8', cores: '8' }, 'Oppo Reno 12': { ram: '12', cores: '8' },
+
+  // India, Sri Lanka, Malaysia, Philippines
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy M55': { ram: '8', cores: '8' },
+  'Samsung Galaxy M35': { ram: '8', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Samsung Galaxy Tab S9 FE': { ram: '6', cores: '8' }, 'Samsung Galaxy Tab A9+': { ram: '8', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Xiaomi Redmi Note 13 Pro': { ram: '12', cores: '8' },
+  'Xiaomi Redmi 12': { ram: '8', cores: '8' }, 'Xiaomi Pad 6': { ram: '8', cores: '8' },
+  'Realme 12 Pro+': { ram: '12', cores: '8' }, 'Realme 12': { ram: '8', cores: '8' },
+  'Realme Pad 2': { ram: '6', cores: '8' }, 'Vivo V30': { ram: '12', cores: '8' },
+  'Vivo Y28': { ram: '8', cores: '8' }, 'Oppo Reno 12 Pro': { ram: '12', cores: '8' },
+  'Oppo Reno 11': { ram: '12', cores: '8' }, 'Oppo A78': { ram: '8', cores: '8' },
+  'Infinix Note 40 Pro': { ram: '12', cores: '8' }, 'Tecno Pova 6 Pro': { ram: '12', cores: '8' },
+
+  // Australia
+  'Google Pixel 9 Pro XL': { ram: '16', cores: '8' }, 'Google Pixel 9 Pro': { ram: '16', cores: '8' },
+  'Google Pixel 9': { ram: '12', cores: '8' }, 'Google Pixel 8a': { ram: '8', cores: '8' },
+  'Google Pixel Tablet': { ram: '8', cores: '8' }, 'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' },
+  'Samsung Galaxy S24+': { ram: '12', cores: '8' }, 'Samsung Galaxy S24': { ram: '8', cores: '8' },
+  'Samsung Galaxy Tab S9 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy Tab S9': { ram: '8', cores: '8' },
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Motorola Edge 50 Pro': { ram: '12', cores: '8' },
+  'Motorola Moto G85': { ram: '8', cores: '8' }, 'Oppo Reno 12 Pro': { ram: '12', cores: '8' },
+  'Xiaomi 14 Ultra': { ram: '16', cores: '8' },
+
+  // Russia
+  'Xiaomi 14 Ultra': { ram: '16', cores: '8' }, 'Xiaomi 14': { ram: '12', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Poco X6 Pro': { ram: '12', cores: '8' },
+  'Poco M6 Pro': { ram: '12', cores: '8' }, 'Realme 12 Pro+': { ram: '12', cores: '8' },
+  'Realme GT 6': { ram: '16', cores: '8' }, 'Realme C67': { ram: '8', cores: '8' },
+  'Tecno Camon 30 Pro': { ram: '12', cores: '8' }, 'Infinix Note 40 Pro': { ram: '12', cores: '8' },
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Samsung Galaxy Tab A9+': { ram: '8', cores: '8' }, 'Samsung Galaxy Tab A9': { ram: '4', cores: '8' },
+  'Huawei Pura 70 Ultra': { ram: '16', cores: '8' }, 'Honor Magic 6 Pro': { ram: '16', cores: '8' },
+
+  // China, Peru, Argentina
+  'Xiaomi 15 Ultra': { ram: '16', cores: '8' }, 'Xiaomi 15 Pro': { ram: '16', cores: '8' },
+  'Xiaomi 15': { ram: '16', cores: '8' }, 'Huawei Pura 70 Ultra': { ram: '16', cores: '8' },
+  'Huawei Mate 60 Pro': { ram: '12', cores: '8' }, 'Honor Magic 7 Pro': { ram: '16', cores: '8' },
+  'Honor Magic 6 Pro': { ram: '16', cores: '8' }, 'Honor 200 Pro': { ram: '12', cores: '8' },
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Motorola Edge 50 Ultra': { ram: '16', cores: '8' }, 'Moto G85': { ram: '8', cores: '8' },
+  'Realme GT 6': { ram: '16', cores: '8' }, 'Oppo Find X7 Ultra': { ram: '16', cores: '8' },
+
+  // South Korea
+  'Samsung Galaxy S25 Ultra': { ram: '16', cores: '8' }, 'Samsung Galaxy S25+': { ram: '12', cores: '8' },
+  'Samsung Galaxy S25': { ram: '12', cores: '8' }, 'Samsung Galaxy Z Fold 6': { ram: '12', cores: '8' },
+  'Samsung Galaxy Z Flip 6': { ram: '12', cores: '8' }, 'Samsung Galaxy Tab S10 Ultra': { ram: '16', cores: '8' },
+  'Samsung Galaxy Tab S10+': { ram: '12', cores: '8' }, 'Samsung Galaxy Quantum 5': { ram: '8', cores: '8' },
+  'Samsung Galaxy Jump 3': { ram: '6', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+
+  // North America (USA & Canada)
+  'Google Pixel 9 Pro Fold': { ram: '16', cores: '8' }, 'Google Pixel 9 Pro XL': { ram: '16', cores: '8' },
+  'Samsung Galaxy S25 Ultra': { ram: '16', cores: '8' }, 'Samsung Galaxy Z Fold 6': { ram: '12', cores: '8' },
+  'OnePlus 12': { ram: '16', cores: '8' }, 'Motorola Razr+ 2024': { ram: '12', cores: '8' },
+
+  // Japan
+  'Sony Xperia 1 VI': { ram: '12', cores: '8' }, 'Sony Xperia 10 VI': { ram: '8', cores: '8' },
+  'Sharp Aquos R9': { ram: '12', cores: '8' }, 'Sharp Aquos Wish4': { ram: '4', cores: '8' },
+  'Google Pixel 9': { ram: '12', cores: '8' }, 'Samsung Galaxy S24': { ram: '8', cores: '8' },
+
+  // Brazil, Mexico, Colombia
+  'Samsung Galaxy S24 FE': { ram: '8', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Motorola Edge 50 Fusion': { ram: '12', cores: '8' },
+  'Realme 12 Pro+': { ram: '12', cores: '8' }, 'Honor 90': { ram: '12', cores: '8' },
+
+  // Europe (Germany, France, Nordics)
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Google Pixel 9 Pro': { ram: '16', cores: '8' },
+  'Xiaomi 14T Pro': { ram: '12', cores: '8' }, 'Sony Xperia 5 V': { ram: '8', cores: '8' },
+
+  // Singapore
+  'Samsung Galaxy S25 Ultra': { ram: '16', cores: '8' }, 'Samsung Galaxy S25+': { ram: '12', cores: '8' },
+  'Google Pixel 9 Pro XL': { ram: '16', cores: '8' }, 'Google Pixel 9': { ram: '12', cores: '8' },
+  'Xiaomi 15': { ram: '16', cores: '8' }, 'OnePlus 12': { ram: '16', cores: '8' },
+  'Oppo Find X7 Ultra': { ram: '16', cores: '8' }, 'Honor Magic 6 Pro': { ram: '16', cores: '8' },
+
+  // Nigeria
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+  'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Xiaomi Redmi Note 13': { ram: '8', cores: '8' },
+  'Infinix Note 40 Pro': { ram: '12', cores: '8' }, 'Infinix Hot 40 Pro': { ram: '8', cores: '8' },
+  'Tecno Camon 30 Pro': { ram: '12', cores: '8' }, 'Tecno Spark 20 Pro': { ram: '8', cores: '8' },
+  'Itel S24': { ram: '8', cores: '8' }, 'Itel P55': { ram: '8', cores: '8' },
+
+  // Yemen
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+  'Samsung Galaxy A05s': { ram: '6', cores: '8' }, 'Xiaomi Redmi Note 13': { ram: '8', cores: '8' },
+  'Xiaomi Redmi 13C': { ram: '6', cores: '8' }, 'Infinix Hot 40i': { ram: '8', cores: '8' },
+  'Tecno Spark 20': { ram: '8', cores: '8' }, 'Tecno Pop 8': { ram: '4', cores: '8' },
+
+  // Pakistan
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+  'Samsung Galaxy A15': { ram: '6', cores: '8' }, 'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' },
+  'Xiaomi Redmi Note 13': { ram: '8', cores: '8' }, 'Xiaomi Redmi 13C': { ram: '6', cores: '8' },
+  'Infinix Note 40 Pro': { ram: '12', cores: '8' }, 'Infinix Hot 40i': { ram: '8', cores: '8' },
+  'Tecno Camon 30 Pro': { ram: '12', cores: '8' }, 'Tecno Spark 20 Pro': { ram: '8', cores: '8' },
+  'Vivo V30': { ram: '12', cores: '8' }, 'Vivo Y28': { ram: '8', cores: '8' },
+  'Oppo Reno 12': { ram: '12', cores: '8' }, 'Oppo A58': { ram: '6', cores: '8' },
+
+  // Indonesia
+  'Samsung Galaxy A55': { ram: '8', cores: '8' }, 'Samsung Galaxy A35': { ram: '8', cores: '8' },
+  'Xiaomi 14T': { ram: '12', cores: '8' }, 'Xiaomi Redmi Note 13 Pro': { ram: '12', cores: '8' },
+  'Oppo Reno 12': { ram: '12', cores: '8' }, 'Vivo V40': { ram: '12', cores: '8' },
+  'Realme 13 Pro': { ram: '12', cores: '8' },
+
+  // Vietnam
+  'Samsung Galaxy S24 Ultra': { ram: '12', cores: '8' }, 'Samsung Galaxy A55': { ram: '8', cores: '8' },
+  'Xiaomi 14T': { ram: '12', cores: '8' }, 'Xiaomi Redmi Note 13 Pro+': { ram: '12', cores: '8' },
+  'Oppo Reno 12 Pro': { ram: '12', cores: '8' }, 'Vivo V40': { ram: '12', cores: '8' },
+  'Realme 13 Pro+': { ram: '12', cores: '8' },
+
+  // Legacy-Geräte (3-5 Jahre alt)
+  'Samsung Galaxy S20': { ram: '8', cores: '8' }, 'Samsung Galaxy S21': { ram: '8', cores: '8' },
+  'Google Pixel 5': { ram: '8', cores: '8' }, 'Google Pixel 6': { ram: '8', cores: '8' },
+  'OnePlus 8T': { ram: '12', cores: '8' }, 'OnePlus 9': { ram: '12', cores: '8' },
+  'Xiaomi Mi 10': { ram: '8', cores: '8' }, 'Xiaomi Mi 11': { ram: '8', cores: '8' },
+  'Huawei P40 Pro': { ram: '8', cores: '8' }, 'Sony Xperia 5 II': { ram: '8', cores: '8' },
+
+  // Tablets
+  'Samsung Galaxy Tab S9 Ultra': { ram: '16', cores: '8' }, 'Samsung Galaxy Tab S9': { ram: '12', cores: '8' },
+  'Samsung Galaxy Tab S8': { ram: '8', cores: '8' }, 'Samsung Galaxy Tab S7': { ram: '6', cores: '8' },
+  'Google Pixel Tablet': { ram: '8', cores: '8' }, 'Xiaomi Pad 6': { ram: '8', cores: '8' },
+  'Xiaomi Pad 5': { ram: '6', cores: '8' }, 'Lenovo Tab P12': { ram: '8', cores: '8' },
+  'Lenovo Tab P11 Pro Gen 2': { ram: '8', cores: '8' }, 'OnePlus Pad': { ram: '8', cores: '8' },
+
+  // Rugged-Phones
+  'CAT S62 Pro': { ram: '6', cores: '8' }, 'Blackview BV9900 Pro': { ram: '8', cores: '8' },
+  'Ulefone Armor 24': { ram: '12', cores: '8' }, 'Doogee V30': { ram: '8', cores: '8' },
+  'Samsung Galaxy XCover 7': { ram: '6', cores: '8' }, 'Nokia XR21': { ram: '6', cores: '8' },
+
+  // AliExpress / Chinese Brands (Doogee, Cubot, Oukitel, Umidigi)
+  'Doogee S100': { ram: '12', cores: '8' }, 'Doogee T30 Pro': { ram: '8', cores: '8' },
+  'Doogee V31GT': { ram: '12', cores: '8' }, 'Cubot KingKong 9': { ram: '12', cores: '8' },
+  'Cubot P80': { ram: '8', cores: '8' }, 'Oukitel WP30 Pro': { ram: '12', cores: '8' },
+  'Oukitel RT7 Titan': { ram: '12', cores: '8' }, 'Umidigi Bison GT2': { ram: '8', cores: '8' },
+  'Umidigi G9 5G': { ram: '6', cores: '8' },
+  'Doogee S96 Pro': { ram: '8', cores: '8' }, 'Doogee S95 Pro': { ram: '8', cores: '8' },
+  'Doogee S88 Pro': { ram: '6', cores: '8' }, 'Doogee S68 Pro': { ram: '6', cores: '8' },
+  'Doogee N40 Pro': { ram: '6', cores: '8' }, 'Doogee X95': { ram: '2', cores: '4' },
+
+  // Cubot (umfassend)
+  'Cubot KingKong 9': { ram: '12', cores: '8' }, 'Cubot KingKong 8': { ram: '6', cores: '8' },
+  'Cubot KingKong 7': { ram: '8', cores: '8' }, 'Cubot KingKong 5 Pro': { ram: '4', cores: '8' },
+  'Cubot P80': { ram: '8', cores: '8' }, 'Cubot P60': { ram: '6', cores: '8' },
+  'Cubot Note 50': { ram: '8', cores: '8' }, 'Cubot Note 21': { ram: '6', cores: '4' },
+  'Cubot X70': { ram: '12', cores: '8' }, 'Cubot X50': { ram: '8', cores: '8' },
+  'Cubot Pocket 3': { ram: '4', cores: '8' }, 'Cubot Tab 50': { ram: '8', cores: '8' },
 };
 
 export const ANDROID_TV_VERSIONS: Record<string, string> = {
