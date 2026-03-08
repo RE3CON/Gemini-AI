@@ -6,10 +6,10 @@ Follow these steps to install and activate the AI Identity Hardener.
 You need a userscript manager installed in your browser:
 - [Tampermonkey](https://www.tampermonkey.net/) (Recommended)
 - [Violentmonkey](https://violentmonkey.github.io/)
-- [AdGuard for Android](https://adguard.com/adguard-android.html) (Includes a built-in UserScript manager)
+- [AdGuard for Android](https://adguard.com/adguard-android/overview.html) (Includes a built-in UserScript manager)
 
 ### AdGuard for Android Setup
-1. **Install AdGuard:** Download and install [AdGuard for Android](https://adguard.com/adguard-android.html).
+1. **Install AdGuard:** Download and install [AdGuard for Android](https://adguard.com/adguard-android/overview.html).
 2. **Enable Userscripts:**
    - Open the AdGuard app.
    - Navigate to **Settings** > **Extensions**.

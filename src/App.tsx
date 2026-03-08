@@ -318,8 +318,11 @@ const SECTION_DEFINITIONS = [
   }
 ];
 
-const GitHubMarkdown: React.FC<{ url: string }> = ({ url }) => {
+import { downloadElementAsPDF } from './utils/pdf';
+
+const GitHubMarkdown: React.FC<{ url: string, title?: string }> = ({ url, title }) => {
   const [content, setContent] = useState<string>('Loading...');
+  const containerId = `markdown-${url.replace(/[^a-zA-Z0-9]/g, '-')}`;
 
   useEffect(() => {
     fetch(url)
@@ -333,7 +336,17 @@ const GitHubMarkdown: React.FC<{ url: string }> = ({ url }) => {
 
   return (
     <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 lg:p-10 overflow-auto prose prose-invert prose-slate max-w-none">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+      <div className="flex justify-end mb-4">
+        <button 
+          onClick={() => downloadElementAsPDF(containerId, title || 'document')}
+          className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs transition-colors"
+        >
+          <Download size={14} /> Download PDF
+        </button>
+      </div>
+      <div id={containerId}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
+      </div>
     </div>
   );
 };
@@ -1302,7 +1315,7 @@ const App: React.FC = () => {
           )}
 
           {activeTab === 'readme' && (
-            <GitHubMarkdown url={getRawUrl('README.md')} />
+            <GitHubMarkdown url={getRawUrl('README.md')} title="README" />
           )}
 
           {activeTab === 'troubleshooting' && (
@@ -1315,16 +1328,16 @@ const App: React.FC = () => {
                   <button onClick={() => getActiveBridge().hardware.setBatteryOptimization(true)} className="px-4 py-2 bg-slate-700 text-white rounded-lg hover:bg-slate-600">Toggle Battery Opt</button>
                 </div>
               </div>
-              <GitHubMarkdown url={getRawUrl('TROUBLESHOOTING.md')} />
+              <GitHubMarkdown url={getRawUrl('TROUBLESHOOTING.md')} title="Troubleshooting" />
             </div>
           )}
 
           {activeTab === 'license' && (
-            <GitHubMarkdown url={getRawUrl('LICENSE')} />
+            <GitHubMarkdown url={getRawUrl('LICENSE')} title="License" />
           )}
 
           {activeTab === 'security' && (
-            <GitHubMarkdown url={getRawUrl('SECURITY.md')} />
+            <GitHubMarkdown url={getRawUrl('SECURITY.md')} title="Security" />
           )}
 
           {activeTab === 'advanced' && (

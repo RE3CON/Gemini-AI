@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Search, Cpu, Globe, Settings, ChevronRight, LayoutList, Terminal } from 'lucide-react';
+import { ChevronLeft, Search, Cpu, Globe, Settings, ChevronRight, LayoutList, Terminal, FileText } from 'lucide-react';
 
 export const AdvancedConfiguration: React.FC = () => {
   const [cacheSize, setCacheSize] = useState(512);
-  const [activeCategory, setActiveCategory] = useState<'Hardware' | 'Network' | 'Stealth' | 'Engine' | 'ADB & Flags'>('Hardware');
+  const [activeCategory, setActiveCategory] = useState<'Hardware' | 'Network' | 'Stealth' | 'Engine' | 'ADB & Flags' | 'Documentation'>('Hardware');
   const [commandLineArgs, setCommandLineArgs] = useState('--disable-gpu --disable-web-rtc --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"');
 
   const loadRecommendedFlags = () => {
@@ -28,6 +28,7 @@ export const AdvancedConfiguration: React.FC = () => {
     { name: 'Stealth', icon: LayoutList },
     { name: 'Engine', icon: Settings },
     { name: 'ADB & Flags', icon: Terminal },
+    { name: 'Documentation', icon: FileText },
   ] as const;
 
   const renderContent = () => {
@@ -75,6 +76,23 @@ export const AdvancedConfiguration: React.FC = () => {
                 Common flags: --disable-gpu, --disable-web-rtc, --disable-web-security, --user-agent="...", --proxy-server="..."
               </p>
             </div>
+          </div>
+        );
+      case 'Documentation':
+        return (
+          <div className="space-y-4">
+            <h2 className="text-sm font-semibold tracking-wider text-[#81c995] mb-4">DOCUMENTATION TOOLS</h2>
+            <p className="text-sm text-gray-400">Generate a PDF of all documentation files in the docs/ directory.</p>
+            <button 
+              onClick={async () => {
+                const res = await fetch('/api/docs/generate-pdf', { method: 'POST' });
+                if (res.ok) alert('PDF generated and saved to docs/!');
+                else alert('Failed to generate PDF');
+              }}
+              className="mt-4 bg-[#81c995] text-[#121212] px-4 py-2 rounded-lg font-medium hover:bg-[#6ab580]"
+            >
+              Generate Docs PDF
+            </button>
           </div>
         );
       default:

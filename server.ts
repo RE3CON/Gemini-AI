@@ -1,7 +1,8 @@
 import express from "express";
 import { createServer as createViteServer } from "vite";
 import { Octokit } from "octokit";
-import fs from "fs/promises";
+import * as fs from 'fs';
+import * as fsPromises from 'fs/promises';
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
@@ -58,10 +59,43 @@ async function startServer() {
       if (!imageData) return res.status(400).json({ error: "No image data provided" });
       
       const buffer = Buffer.from(imageData, 'base64');
-      await fs.writeFile(path.join(process.cwd(), 'public', 'logo.png'), buffer);
+      await fsPromises.writeFile(path.join(process.cwd(), 'public', 'logo.png'), buffer);
       res.json({ success: true });
     } catch (error: any) {
       console.error("Save Logo Error:", error);
+      res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Generate Docs PDF
+  app.post("/api/docs/generate-pdf", async (req, res) => {
+    try {
+      const docsDir = path.join(process.cwd(), 'docs');
+      const files = await fsPromises.readdir(docsDir);
+      const mdFiles = files.filter(f => f.endsWith('.md'));
+      
+      const PDFDocument = (await import('pdfkit')).default;
+      const doc = new PDFDocument();
+      const pdfPath = path.join(docsDir, 'Gemini-AI-Docs.pdf');
+      const writeStream = fs.createWriteStream(pdfPath);
+      
+      doc.pipe(writeStream);
+      
+      for (const file of mdFiles) {
+        const content = await fsPromises.readFile(path.join(docsDir, file), 'utf8');
+        doc.addPage();
+        doc.fontSize(18).text(file, { underline: true });
+        doc.moveDown();
+        doc.fontSize(12).text(content);
+      }
+      
+      doc.end();
+      
+      writeStream.on('finish', () => {
+        res.json({ success: true, path: 'docs/Gemini-AI-Docs.pdf' });
+      });
+    } catch (error: any) {
+      console.error("PDF Generation Error:", error);
       res.status(500).json({ error: error.message });
     }
   });
@@ -148,7 +182,7 @@ async function startServer() {
       const filesToPush: { path: string; content: string; mode: "100644" | "100755" | "040000" | "160000" | "120000"; type: "blob" | "tree" | "commit"; isBinary: boolean }[] = [];
       
       async function readDir(dir: string, base: string = "") {
-        const entries = await fs.readdir(dir, { withFileTypes: true });
+        const entries = await fsPromises.readdir(dir, { withFileTypes: true });
         for (const entry of entries) {
           const fullPath = path.join(dir, entry.name);
           const relativePath = path.join(base, entry.name).replace(/\\/g, '/');
@@ -177,7 +211,7 @@ async function startServer() {
             await readDir(fullPath, relativePath);
           } else {
             const isBinary = entry.name.endsWith('.png') || entry.name.endsWith('.jpg') || entry.name.endsWith('.ico');
-            const content = await fs.readFile(fullPath, isBinary ? "base64" : "utf8");
+            const content = await fsPromises.readFile(fullPath, isBinary ? "base64" : "utf8");
             
             // CRITICAL: GitHub Secret Scanning will block the entire push if ANY file contains a token.
             let safeContent = content;
