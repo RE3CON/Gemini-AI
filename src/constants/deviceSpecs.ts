@@ -505,6 +505,54 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Xiaomi Pad 6': { ram: '8', cores: '8' }, 'Xiaomi Pad 5': { ram: '6', cores: '8' },
   'Redmi Pad Pro': { ram: '8', cores: '8' }, 'Redmi Pad SE': { ram: '6', cores: '8' },
   'Galaxy Tab S10 FE+': { ram: '8', cores: '8' }, 'Galaxy Tab S10 FE': { ram: '6', cores: '8' },
+
+  // Developer Builds (Android 9-17)
+  'Dev Build Android 17': { ram: '16', cores: '8' }, 'Dev Build Android 16': { ram: '16', cores: '8' },
+  'Dev Build Android 15': { ram: '16', cores: '8' }, 'Dev Build Android 14': { ram: '12', cores: '8' },
+  'Dev Build Android 13': { ram: '12', cores: '8' }, 'Dev Build Android 12': { ram: '8', cores: '8' },
+  'Dev Build Android 11': { ram: '8', cores: '8' }, 'Dev Build Android 10': { ram: '6', cores: '8' },
+  'Dev Build Android 9': { ram: '4', cores: '8' },
+
+  // Xiaomi (Mainline)
+  'Xiaomi 14 Ultra': { ram: '16', cores: '8' }, 'Xiaomi 14 Pro': { ram: '16', cores: '8' },
+  'Xiaomi 14': { ram: '12', cores: '8' }, 'Xiaomi 13T Pro': { ram: '16', cores: '8' },
+  'Xiaomi 13T': { ram: '12', cores: '8' }, 'Xiaomi 13 Ultra': { ram: '16', cores: '8' },
+  'Xiaomi 13 Pro': { ram: '12', cores: '8' }, 'Xiaomi 13': { ram: '12', cores: '8' },
+
+  // Poco
+  'Poco F6 Pro': { ram: '16', cores: '8' }, 'Poco F6': { ram: '12', cores: '8' },
+  'Poco X6 Pro': { ram: '12', cores: '8' }, 'Poco X6': { ram: '12', cores: '8' },
+  'Poco M6 Pro': { ram: '12', cores: '8' }, 'Poco M6': { ram: '8', cores: '8' },
+
+  // Oppo
+  'Oppo Find X7 Ultra': { ram: '16', cores: '8' }, 'Oppo Find X7': { ram: '16', cores: '8' },
+  'Oppo Reno 12 Pro': { ram: '12', cores: '8' }, 'Oppo Reno 12': { ram: '12', cores: '8' },
+  'Oppo Reno 11 Pro': { ram: '12', cores: '8' }, 'Oppo A79': { ram: '8', cores: '8' },
+
+  // Motorola
+  'Moto Edge 50 Ultra': { ram: '16', cores: '8' }, 'Moto Edge 50 Pro': { ram: '12', cores: '8' },
+  'Moto Edge 40 Pro': { ram: '12', cores: '8' }, 'Moto G85': { ram: '12', cores: '8' },
+  'Moto G54 5G': { ram: '12', cores: '8' }, 'Moto G24': { ram: '8', cores: '8' },
+
+  // OnePlus
+  'OnePlus 13': { ram: '24', cores: '8' }, 'OnePlus 12': { ram: '16', cores: '8' },
+  'OnePlus 11': { ram: '16', cores: '8' }, 'OnePlus Nord 4': { ram: '16', cores: '8' },
+  'OnePlus Nord CE4': { ram: '12', cores: '8' },
+
+  // Huawei
+  'Huawei Pura 70 Ultra': { ram: '16', cores: '8' }, 'Huawei Pura 70 Pro': { ram: '12', cores: '8' },
+  'Huawei Mate 60 Pro': { ram: '12', cores: '8' }, 'Huawei Nova 12 Pro': { ram: '12', cores: '8' },
+
+  // Asus (Zenfone)
+  'Asus Zenfone 11 Ultra': { ram: '16', cores: '8' }, 'Asus Zenfone 10': { ram: '16', cores: '8' },
+  'Asus Zenfone 9': { ram: '16', cores: '8' }, 'Asus Zenfone 8': { ram: '16', cores: '8' },
+  'Asus Zenfone 8 Flip': { ram: '8', cores: '8' }, 'Asus Zenfone 7 Pro': { ram: '8', cores: '8' },
+  'Asus Zenfone 7': { ram: '8', cores: '8' }, 'Asus Zenfone 6': { ram: '8', cores: '8' },
+  'Asus Zenfone 5z': { ram: '8', cores: '8' }, 'Asus Zenfone 5': { ram: '6', cores: '8' },
+  'Asus Zenfone 4 Pro': { ram: '6', cores: '8' }, 'Asus Zenfone 4': { ram: '4', cores: '8' },
+  'Asus Zenfone 3 Deluxe': { ram: '6', cores: '4' }, 'Asus Zenfone 3': { ram: '4', cores: '8' },
+  'Asus Zenfone 2 Deluxe': { ram: '4', cores: '4' }, 'Asus Zenfone 2': { ram: '4', cores: '4' },
+  'Asus Zenfone 1': { ram: '2', cores: '2' },
 };
 
 export const ANDROID_TV_VERSIONS: Record<string, string> = {
@@ -519,5 +567,6 @@ export const ANDROID_TV_VERSIONS: Record<string, string> = {
   'Android 14': 'Android 14',
   'Android 15': 'Android 15',
   'Android 16': 'Android 16',
+  'Android 17': 'Android 17',
 };
 
