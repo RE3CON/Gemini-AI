@@ -28,6 +28,7 @@ import { getActiveBridge } from './services/bridgeService';
 import { AdvancedConfiguration } from './components/AdvancedConfiguration';
 import { CommandPalette } from './components/CommandPalette';
 import { INITIAL_CONFIG } from './constants/initialConfig';
+import { DEVICE_SPECS } from './constants/deviceSpecs';
 
 const MERGED_SCRIPT = `${generateUserScript(INITIAL_CONFIG)}`;
 
@@ -432,6 +433,11 @@ const App: React.FC = () => {
 
   useEffect(() => {
     // GPU Detection
+    setHardware({
+        memory: (navigator as any).deviceMemory || 'N/A',
+        cores: navigator.hardwareConcurrency || 'N/A',
+        gpu: 'Loading...'
+    });
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (gl) {
@@ -489,6 +495,12 @@ const App: React.FC = () => {
           
           setDeviceInfo({ manufacturer, model, platform });
           if (ua.platformVersion) setAndroidVersion(ua.platformVersion);
+
+          // Derive hardware from model
+          const specs = DEVICE_SPECS[model];
+          if (specs) {
+            setHardware(prev => ({ ...prev, memory: specs.ram, cores: specs.cores }));
+          }
         })
         .catch(console.error);
     }
@@ -1438,7 +1450,8 @@ const App: React.FC = () => {
             </div>
             <div className="flex flex-col gap-1">
               <span><span className="text-slate-500">Theme:</span> {theme}</span>
-              <span><span className="text-slate-500">HW:</span> <span className="text-emerald-700 font-bold">{hardware.memory}</span>GB RAM, <span className="text-emerald-700 font-bold">{hardware.cores}</span> Cores</span>
+              <span className="break-all"><span className="text-slate-500">Device:</span> {deviceInfo.manufacturer} {deviceInfo.model}</span>
+              <span className="break-all"><span className="text-slate-500">HW:</span> <span className="text-emerald-700 font-bold">{hardware.memory}</span>GB RAM, <span className="text-emerald-700 font-bold">{hardware.cores}</span> Cores</span>
               <span className="break-all"><span className="text-slate-500">GPU/Chip:</span> {hardware.gpu}</span>
               <span className="break-all"><span className="text-slate-500">URL:</span> {window.location.origin}</span>
               <span><span className="text-slate-500">Engine:</span> Vite</span>
