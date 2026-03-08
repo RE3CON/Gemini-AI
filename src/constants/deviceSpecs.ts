@@ -4,10 +4,14 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'SM-S948B': { ram: '16', cores: '8' }, 'SM-S946B': { ram: '12', cores: '8' }, 'SM-S941B': { ram: '12', cores: '8' }, // S26
   'SM-S938B': { ram: '16', cores: '8' }, 'SM-S936B': { ram: '12', cores: '8' }, 'SM-S931B': { ram: '12', cores: '8' }, // S25
   'SM-S928B': { ram: '12', cores: '8' }, 'SM-S926B': { ram: '12', cores: '8' }, 'SM-S921B': { ram: '8', cores: '8' }, // S24
+  'SM-S721B': { ram: '8', cores: '8' }, // S24 FE
   'SM-S918B': { ram: '12', cores: '8' }, 'SM-S916B': { ram: '8', cores: '8' }, 'SM-S911B': { ram: '8', cores: '8' }, // S23
+  'SM-S711B': { ram: '8', cores: '8' }, // S23 FE
   'SM-S908B': { ram: '12', cores: '8' }, 'SM-S906B': { ram: '8', cores: '8' }, 'SM-S901B': { ram: '8', cores: '8' }, // S22
   'SM-G998B': { ram: '12', cores: '8' }, 'SM-G996B': { ram: '8', cores: '8' }, 'SM-G991B': { ram: '8', cores: '8' }, // S21
+  'SM-G990B': { ram: '8', cores: '8' }, // S21 FE
   'SM-G988B': { ram: '12', cores: '8' }, 'SM-G986B': { ram: '12', cores: '8' }, 'SM-G981B': { ram: '8', cores: '8' }, // S20
+  'SM-G780B': { ram: '8', cores: '8' }, // S20 FE
   'SM-G975F': { ram: '8', cores: '8' }, 'SM-G973F': { ram: '8', cores: '8' }, 'SM-G970F': { ram: '6', cores: '8' }, // S10
   'SM-G965F': { ram: '6', cores: '8' }, 'SM-G960F': { ram: '4', cores: '8' }, // S9
   'SM-G955F': { ram: '4', cores: '8' }, 'SM-G950F': { ram: '4', cores: '8' }, // S8
@@ -15,6 +19,15 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'SM-G925F': { ram: '3', cores: '8' }, 'SM-G920F': { ram: '3', cores: '8' }, // S6
   'SM-G900F': { ram: '2', cores: '4' }, 'GT-I9505': { ram: '2', cores: '4' }, 'GT-I9300': { ram: '1', cores: '4' }, // S5, S4, S3
   'GT-I9100': { ram: '1', cores: '2' }, 'GT-I9000': { ram: '0.5', cores: '1' }, // S2, S1
+
+  // Z Series (Foldables)
+  'SM-F966B': { ram: '16', cores: '8' }, 'SM-F751B': { ram: '12', cores: '8' }, // Fold 7, Flip 7
+  'SM-F956B': { ram: '12', cores: '8' }, 'SM-F741B': { ram: '12', cores: '8' }, // Fold 6, Flip 6
+  'SM-F946B': { ram: '12', cores: '8' }, 'SM-F731B': { ram: '8', cores: '8' }, // Fold 5, Flip 5
+  'SM-F936B': { ram: '12', cores: '8' }, 'SM-F721B': { ram: '8', cores: '8' }, // Fold 4, Flip 4
+  'SM-F926B': { ram: '12', cores: '8' }, 'SM-F711B': { ram: '8', cores: '8' }, // Fold 3, Flip 3
+  'SM-F916B': { ram: '12', cores: '8' }, 'SM-F707B': { ram: '8', cores: '8' }, // Fold 2, Flip 5G
+  'SM-F900F': { ram: '12', cores: '8' }, 'SM-F700F': { ram: '8', cores: '8' }, // Fold, Flip
 
   // Note Series
   'SM-N986B': { ram: '12', cores: '8' }, 'SM-N985F': { ram: '8', cores: '8' }, // Note 20
@@ -38,9 +51,24 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Galaxy A5': { ram: '3', cores: '8' }, 'Galaxy A3': { ram: '2', cores: '8' },
   'Galaxy A7 (2017)': { ram: '3', cores: '8' }, 'Galaxy A5 (2017)': { ram: '3', cores: '8' },
 
+  // M Series
+  'Galaxy M56': { ram: '12', cores: '8' }, 'Galaxy M55': { ram: '8', cores: '8' }, 'Galaxy M54': { ram: '8', cores: '8' },
+  'Galaxy M36': { ram: '8', cores: '8' }, 'Galaxy M35': { ram: '8', cores: '8' }, 'Galaxy M34': { ram: '6', cores: '8' },
+  'Galaxy M16': { ram: '6', cores: '8' }, 'Galaxy M15': { ram: '6', cores: '8' }, 'Galaxy M14': { ram: '4', cores: '8' },
+  'Galaxy M53': { ram: '8', cores: '8' }, 'Galaxy M33': { ram: '6', cores: '8' }, 'Galaxy M23': { ram: '4', cores: '8' },
+  'Galaxy M52': { ram: '8', cores: '8' }, 'Galaxy M32': { ram: '6', cores: '8' }, 'Galaxy M22': { ram: '4', cores: '8' },
+  'Galaxy M51': { ram: '8', cores: '8' }, 'Galaxy M31': { ram: '6', cores: '8' }, 'Galaxy M21': { ram: '4', cores: '8' },
+  'Galaxy M30': { ram: '4', cores: '8' }, 'Galaxy M20': { ram: '4', cores: '8' }, 'Galaxy M10': { ram: '3', cores: '8' },
+
   // Tablets
-  'Galaxy Tab S10 Ultra': { ram: '16', cores: '8' }, 'Galaxy Tab S9 Ultra': { ram: '16', cores: '8' },
-  'Galaxy Tab S8 Ultra': { ram: '12', cores: '8' }, 'Galaxy Tab S7+': { ram: '8', cores: '8' },
+  'Galaxy Tab S11 Ultra': { ram: '16', cores: '8' }, 'Galaxy Tab S11': { ram: '12', cores: '8' },
+  'Galaxy Tab S10 Ultra': { ram: '16', cores: '8' }, 'Galaxy Tab S10+': { ram: '12', cores: '8' }, 'Galaxy Tab S10': { ram: '12', cores: '8' },
+  'Galaxy Tab S10 FE+': { ram: '8', cores: '8' }, 'Galaxy Tab S10 FE': { ram: '6', cores: '8' },
+  'Galaxy Tab S9 Ultra': { ram: '16', cores: '8' }, 'Galaxy Tab S9+': { ram: '12', cores: '8' }, 'Galaxy Tab S9': { ram: '8', cores: '8' },
+  'Galaxy Tab S9 FE+': { ram: '8', cores: '8' }, 'Galaxy Tab S9 FE': { ram: '6', cores: '8' },
+  'Galaxy Tab S8 Ultra': { ram: '12', cores: '8' }, 'Galaxy Tab S8+': { ram: '8', cores: '8' }, 'Galaxy Tab S8': { ram: '8', cores: '8' },
+  'Galaxy Tab S7+': { ram: '8', cores: '8' }, 'Galaxy Tab S7': { ram: '6', cores: '8' },
+  'Galaxy Tab S7 FE': { ram: '6', cores: '8' },
   'Galaxy Tab S6': { ram: '6', cores: '8' }, 'Galaxy Tab S5e': { ram: '4', cores: '8' },
   'Galaxy Tab S4': { ram: '4', cores: '8' }, 'Galaxy Tab S3': { ram: '4', cores: '4' },
   'Galaxy Tab S2': { ram: '3', cores: '8' }, 'Galaxy Tab S': { ram: '3', cores: '8' },
@@ -204,4 +232,17 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Telekom T Phone': { ram: '4', cores: '8' }, 'Telekom T Phone Pro': { ram: '6', cores: '8' },
   'Vodafone Smart V11': { ram: '3', cores: '8' }, 'Vodafone Smart N10': { ram: '2', cores: '4' },
   'O2 my Handy Phone': { ram: '4', cores: '8' },
+  // Smartwatches
+  'Galaxy Watch 9': { ram: '2', cores: '5' }, 'Galaxy Watch 8': { ram: '2', cores: '5' },
+  'Galaxy Watch 7': { ram: '2', cores: '5' }, 'Galaxy Watch 6': { ram: '2', cores: '5' },
+  'Galaxy Watch 5': { ram: '1.5', cores: '2' }, 'Galaxy Watch 4': { ram: '1.5', cores: '2' },
+  'Galaxy Watch 3': { ram: '1', cores: '2' },
+
+  // Android TV & Streaming Sticks
+  'Waipu.tv Stick 4K': { ram: '2', cores: '4' }, 'Waipu.tv Stick': { ram: '1', cores: '4' },
+  'Chromecast with Google TV (4K)': { ram: '2', cores: '4' }, 'Chromecast with Google TV (HD)': { ram: '1.5', cores: '4' },
+  'Nvidia Shield TV Pro': { ram: '3', cores: '8' }, 'Nvidia Shield TV': { ram: '2', cores: '4' },
+  'Amazon Fire TV Stick 4K Max': { ram: '2', cores: '4' }, 'Amazon Fire TV Stick 4K': { ram: '1.5', cores: '4' },
+  'Amazon Fire TV Stick': { ram: '1', cores: '4' }, 'Xiaomi Mi TV Stick 4K': { ram: '2', cores: '4' },
+  'Xiaomi Mi TV Stick': { ram: '1', cores: '4' }, 'Generic Android TV Box': { ram: '2', cores: '4' },
 };
