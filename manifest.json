@@ -2,13 +2,13 @@
   "name": "AI Identity Hardener",
   "short_name": "AI Hardener",
   "description": "Ultimate Chrome fingerprint hardening for Google AI services.",
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#FF4444",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
     }
