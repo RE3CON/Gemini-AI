@@ -498,6 +498,13 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'LG V50 ThinQ': { ram: '6', cores: '8' }, 'LG V40 ThinQ': { ram: '6', cores: '8' },
   'LG V30': { ram: '4', cores: '8' }, 'HTC One M7': { ram: '2', cores: '4' },
   'HTC One M8': { ram: '2', cores: '4' }, 'HTC One M9': { ram: '3', cores: '8' },
+
+  // Weitere Tablets (Huawei, Xiaomi, etc.)
+  'Huawei MatePad Pro 13.2': { ram: '16', cores: '8' }, 'Huawei MatePad Pro 11': { ram: '12', cores: '8' },
+  'Huawei MatePad 11.5': { ram: '8', cores: '8' }, 'Xiaomi Pad 6S Pro': { ram: '16', cores: '8' },
+  'Xiaomi Pad 6': { ram: '8', cores: '8' }, 'Xiaomi Pad 5': { ram: '6', cores: '8' },
+  'Redmi Pad Pro': { ram: '8', cores: '8' }, 'Redmi Pad SE': { ram: '6', cores: '8' },
+  'Galaxy Tab S10 FE+': { ram: '8', cores: '8' }, 'Galaxy Tab S10 FE': { ram: '6', cores: '8' },
 };
 
 export const ANDROID_TV_VERSIONS: Record<string, string> = {
