@@ -3,7 +3,7 @@ import { ChevronLeft, Search, Cpu, Globe, Settings, ChevronRight, LayoutList, Te
 
 export const AdvancedConfiguration: React.FC = () => {
   const [cacheSize, setCacheSize] = useState(512);
-  const [activeCategory, setActiveCategory] = useState<'Hardware' | 'Network' | 'Stealth' | 'Engine' | 'ADB & Flags' | 'Documentation'>('Hardware');
+  const [activeCategory, setActiveCategory] = useState<'Hardware' | 'Network' | 'Stealth' | 'Engine' | 'ADB & Flags' | 'Docs'>('Hardware');
   const [commandLineArgs, setCommandLineArgs] = useState('--disable-gpu --disable-web-rtc --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"');
 
   const loadRecommendedFlags = () => {
@@ -28,7 +28,7 @@ export const AdvancedConfiguration: React.FC = () => {
     { name: 'Stealth', icon: LayoutList },
     { name: 'Engine', icon: Settings },
     { name: 'ADB & Flags', icon: Terminal },
-    { name: 'Documentation', icon: FileText },
+    { name: 'Docs', icon: FileText },
   ] as const;
 
   const renderContent = () => {
@@ -78,43 +78,29 @@ export const AdvancedConfiguration: React.FC = () => {
             </div>
           </div>
         );
-      case 'Documentation':
+      case 'Docs':
         return (
           <div className="space-y-4">
-            <h2 className="text-sm font-semibold tracking-wider text-[#81c995] mb-4">DOCUMENTATION TOOLS</h2>
-            <div className="flex flex-col gap-4">
-              <p className="text-sm text-gray-400">Generate a PDF or view documentation for printing.</p>
-              <div className="flex gap-2">
-                <button 
-                  onClick={async () => {
-                    const res = await fetch('/api/docs/generate-pdf', { method: 'POST' });
-                    if (res.ok) {
-                      const blob = await res.blob();
-                      const url = window.URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.href = url;
-                      a.download = 'Gemini-AI-Docs.pdf';
-                      document.body.appendChild(a);
-                      a.click();
-                      a.remove();
-                      window.URL.revokeObjectURL(url);
-                    } else {
-                      alert('Failed to generate PDF');
-                    }
-                  }}
-                  className="bg-[#81c995] text-[#121212] px-4 py-2 rounded-lg font-medium hover:bg-[#6ab580]"
-                >
-                  Download Docs PDF
-                </button>
-                <a 
-                  href="/api/docs/view" 
-                  target="_blank" 
-                  className="bg-gray-700 text-white px-4 py-2 rounded-lg font-medium hover:bg-gray-600"
-                >
-                  View for Printing
-                </a>
-              </div>
-            </div>
+            <h2 className="text-sm font-semibold tracking-wider text-[#81c995] mb-4">DOCUMENTATION</h2>
+            <p className="text-sm text-gray-400 mb-4">View project documentation directly from GitHub:</p>
+            <a 
+              href="https://github.com/RE3CON/Gemini-AI/tree/main/docs" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition"
+            >
+              <h3 className="text-[#81c995] font-medium">Open Docs Folder</h3>
+              <p className="text-xs text-gray-400">Browse all markdown files on GitHub</p>
+            </a>
+            <a 
+              href="https://github.com/RE3CON/Gemini-AI/wiki" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition"
+            >
+              <h3 className="text-[#81c995] font-medium">Open Project Wiki</h3>
+              <p className="text-xs text-gray-400">Read detailed guides and troubleshooting</p>
+            </a>
           </div>
         );
       default:
