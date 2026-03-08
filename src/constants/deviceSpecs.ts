@@ -444,6 +444,60 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Cubot Note 50': { ram: '8', cores: '8' }, 'Cubot Note 21': { ram: '6', cores: '4' },
   'Cubot X70': { ram: '12', cores: '8' }, 'Cubot X50': { ram: '8', cores: '8' },
   'Cubot Pocket 3': { ram: '4', cores: '8' }, 'Cubot Tab 50': { ram: '8', cores: '8' },
+
+  // South America
+  'Samsung Galaxy A05': { ram: '4', cores: '8' }, 'Samsung Galaxy A05s': { ram: '6', cores: '8' },
+  'Samsung Galaxy A15': { ram: '6', cores: '8' }, 'Moto G24': { ram: '4', cores: '8' },
+  'Moto G54': { ram: '8', cores: '8' }, 'Xiaomi Redmi 13C': { ram: '6', cores: '8' },
+  'Xiaomi Redmi A3': { ram: '4', cores: '8' },
+
+  // Lower End / Budget
+  'Samsung Galaxy A04': { ram: '4', cores: '8' }, 'Samsung Galaxy A03': { ram: '3', cores: '8' },
+  'Moto E13': { ram: '2', cores: '8' }, 'Moto E22': { ram: '3', cores: '8' },
+  'Xiaomi Redmi A2': { ram: '3', cores: '8' }, 'Xiaomi Redmi A1': { ram: '2', cores: '4' },
+  'Tecno Pop 7': { ram: '2', cores: '4' }, 'Tecno Pop 8': { ram: '3', cores: '8' },
+
+  // Xiaomi Redmi (vollumfänglich)
+  'Redmi Note 13 Pro+': { ram: '12', cores: '8' }, 'Redmi Note 13 Pro': { ram: '12', cores: '8' },
+  'Redmi Note 13': { ram: '8', cores: '8' }, 'Redmi Note 13R': { ram: '8', cores: '8' },
+  'Redmi Note 12 Pro+': { ram: '12', cores: '8' }, 'Redmi Note 12 Pro': { ram: '8', cores: '8' },
+  'Redmi Note 12': { ram: '8', cores: '8' }, 'Redmi Note 12S': { ram: '8', cores: '8' },
+  'Redmi Note 11 Pro+': { ram: '8', cores: '8' }, 'Redmi Note 11 Pro': { ram: '8', cores: '8' },
+  'Redmi Note 11': { ram: '6', cores: '8' }, 'Redmi 13C': { ram: '8', cores: '8' },
+  'Redmi 12': { ram: '8', cores: '8' }, 'Redmi 12C': { ram: '6', cores: '8' },
+  'Redmi 10': { ram: '6', cores: '8' }, 'Redmi 10C': { ram: '4', cores: '8' },
+  'Redmi A3': { ram: '4', cores: '8' }, 'Redmi A2': { ram: '3', cores: '8' },
+  'Redmi A1': { ram: '2', cores: '4' },
+
+  // Xiaomi Redmi Note 10 - 16 (Erweiterung)
+  'Redmi Note 16 Pro+': { ram: '16', cores: '8' }, 'Redmi Note 16 Pro': { ram: '12', cores: '8' },
+  'Redmi Note 16': { ram: '8', cores: '8' }, 'Redmi Note 15 Pro+': { ram: '12', cores: '8' },
+  'Redmi Note 15 Pro': { ram: '12', cores: '8' }, 'Redmi Note 15': { ram: '8', cores: '8' },
+  'Redmi Note 14 Pro+': { ram: '12', cores: '8' }, 'Redmi Note 14 Pro': { ram: '12', cores: '8' },
+  'Redmi Note 14': { ram: '8', cores: '8' }, 'Redmi Note 13R Pro': { ram: '12', cores: '8' },
+  'Redmi Note 12 Turbo': { ram: '12', cores: '8' }, 'Redmi Note 12 Pro Speed': { ram: '12', cores: '8' },
+  'Redmi Note 11T Pro+': { ram: '8', cores: '8' }, 'Redmi Note 11T Pro': { ram: '8', cores: '8' },
+  'Redmi Note 11S': { ram: '8', cores: '8' }, 'Redmi Note 11E': { ram: '6', cores: '8' },
+  'Redmi Note 10 Pro': { ram: '8', cores: '8' }, 'Redmi Note 10S': { ram: '8', cores: '8' },
+  'Redmi Note 10': { ram: '6', cores: '8' }, 'Redmi Note 10 5G': { ram: '6', cores: '8' },
+
+  // Gaming Phones
+  'Asus ROG Phone 9 Pro': { ram: '24', cores: '8' }, 'Asus ROG Phone 8 Pro': { ram: '24', cores: '8' },
+  'Asus ROG Phone 7 Ultimate': { ram: '16', cores: '8' }, 'Asus ROG Phone 6 Pro': { ram: '18', cores: '8' },
+  'Nubia RedMagic 9S Pro': { ram: '16', cores: '8' },
+
+  // Foldables (Erweiterung)
+  'Motorola Razr 50 Ultra': { ram: '12', cores: '8' }, 'Motorola Razr 40 Ultra': { ram: '12', cores: '8' },
+  'Honor Magic V3': { ram: '16', cores: '8' }, 'Honor Magic V2': { ram: '16', cores: '8' },
+
+  // Wearables
+  'Google Pixel Watch 3': { ram: '2', cores: '4' }, 'Google Pixel Watch 2': { ram: '2', cores: '4' },
+  'Garmin Fenix 7': { ram: '0.03', cores: '2' }, 'Garmin Venu 3': { ram: '0.03', cores: '2' },
+
+  // Older Flagships (LG, HTC)
+  'LG V50 ThinQ': { ram: '6', cores: '8' }, 'LG V40 ThinQ': { ram: '6', cores: '8' },
+  'LG V30': { ram: '4', cores: '8' }, 'HTC One M7': { ram: '2', cores: '4' },
+  'HTC One M8': { ram: '2', cores: '4' }, 'HTC One M9': { ram: '3', cores: '8' },
 };
 
 export const ANDROID_TV_VERSIONS: Record<string, string> = {
