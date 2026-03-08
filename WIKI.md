@@ -18,7 +18,8 @@ Welcome to the Gemini-AI Wiki! This is the central repository for detailed docum
 10. [Native Ecosystem Integration](#native-ecosystem-integration)
 11. [CI/CD Pipeline](#cicd-pipeline)
 12. [Extra: Community & Discussions](#extra-community--discussions)
-13. [Contributing](#contributing)
+13. [Reference Tools & Downloads](#reference-tools--downloads)
+14. [Contributing](#contributing)
 
 ---
 
@@ -165,6 +166,46 @@ Have questions, ideas, or want to share your experience? Join the conversation i
 
 - [Gemini-AI Discussions](https://github.com/RE3CON/Gemini-AI/discussions)
 - [Gemini-Pro Discussions](https://github.com/RE3CON/Gemini-Pro/discussions)
+
+## Reference Tools & Downloads
+
+### AdGuard Android
+- [AdGuard Android (Release)](https://adguard.com/en/adguard-android/overview.html)
+- [AdGuard Android (Beta)](https://adguard.com/en/blog/adguard-android-beta.html)
+- [AdGuard Android (Nightly)](https://adguard.com/en/blog/adguard-android-nightly.html)
+
+### Userscript Managers
+- [Tampermonkey](https://www.tampermonkey.net/)
+- [Violentmonkey](https://violentmonkey.github.io/)
+
+### Android Hardening & Shell Tools
+- [Shizuku](https://shizuku.rikka.app/)
+- [AShell](https://github.com/zacharee/AShell)
+- [Termux](https://termux.dev/)
+- [Logcat Extreme Pro](https://play.google.com/store/apps/details?id=scd.lcexpro)
+- [Chromium for Android (Official)](https://www.chromium.org/getting-involved/download-chromium/)
+
+### Development & CI/CD
+- [GitHub Actions](https://github.com/features/actions)
+- [GitHub Pages](https://pages.github.com/)
+- [GitHub Packages](https://github.com/features/packages)
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/)
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+### Google Services & AI
+- [Google Workspace](https://workspace.google.com/)
+- [Gemini Business](https://workspace.google.com/solutions/ai/)
+- [Google One AI Premium](https://one.google.com/about/plans)
+- [Google AI Studio](https://aistudio.google.com/)
+
+### Ecosystem Integrations
+- [Samsung Health](https://www.samsung.com/global/galaxy/apps/samsung-health/)
+- [Samsung Notes](https://www.samsung.com/global/galaxy/apps/samsung-notes/)
+- [Microsoft Office 365](https://www.microsoft.com/en-us/microsoft-365)
+- [Microsoft OneDrive](https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage)
 
 ## Contributing
 
