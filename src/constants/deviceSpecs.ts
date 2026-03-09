@@ -839,6 +839,7 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Infinix Note 450 Pro': { ram: '12', cores: '8' }, 'Infinix Note 450': { ram: '12', cores: '8' },
   'ZTE Blade A54': { ram: '4', cores: '8' }, 'ZTE Blade A54 Pro': { ram: '6', cores: '8' }, 'ZTE Blade A54 Max': { ram: '8', cores: '8' },
   'Moto G20': { ram: '3', cores: '8' }, 'Moto G20 Plus': { ram: '4', cores: '8' },
+  'Generic Low-End Tablet (TB02)': { ram: '2', cores: '8' },
 };
 
 export const ANDROID_TV_VERSIONS: Record<string, string> = {
