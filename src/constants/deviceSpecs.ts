@@ -30,7 +30,7 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'SM-S731B': { ram: '8', cores: '8' }, // S25 FE
   'SM-S938B': { ram: '16', cores: '8' }, 'SM-S936B': { ram: '12', cores: '8' }, 'SM-S931B': { ram: '12', cores: '8' }, // S25
 
-  'SM-S928B': { ram: '12', cores: '8' },   'SM-S926B': { ram: '12', cores: '8' },   'SM-S921B': { ram: '8', cores: '8' },
+  'SM-S928B': { ram: '12', cores: '8' }, 'SM-S928U': { ram: '12', cores: '8' }, 'SM-S928W': { ram: '12', cores: '8' }, 'SM-S9280': { ram: '12', cores: '8' }, 'SM-S928N': { ram: '12', cores: '8' }, 'SM-S926B': { ram: '12', cores: '8' },   'SM-S921B': { ram: '8', cores: '8' },
   'SM-S721B': { ram: '8', cores: '8' },
   'SM-S918B': { ram: '12', cores: '8' },   'SM-S916B': { ram: '8', cores: '8' },   'SM-S911B': { ram: '8', cores: '8' },
   'SM-S711B': { ram: '8', cores: '8' },
@@ -260,7 +260,14 @@ export const DEVICE_SPECS: Record<string, { ram: string, cores: string }> = {
   'Xiaomi Mi TV Stick': { ram: '1', cores: '4' },
   // Chinese Android TV Boxes (Max, Pro, etc.)
   // Legacy-Geräte (3-5 Jahre alt)
-  'Samsung Galaxy S20': { ram: '8', cores: '8' },   'Samsung Galaxy S21': { ram: '8', cores: '8' },
+  // Samsung S20-S23 Series
+  'SM-G980': { ram: '8', cores: '8' }, 'SM-G981': { ram: '8', cores: '8' }, 'SM-G985': { ram: '8', cores: '8' }, 'SM-G986': { ram: '8', cores: '8' }, 'SM-G988': { ram: '12', cores: '8' },
+  'SM-G780': { ram: '8', cores: '8' }, 'SM-G781': { ram: '8', cores: '8' }, // S20 FE
+  'SM-G991': { ram: '8', cores: '8' }, 'SM-G996': { ram: '8', cores: '8' }, 'SM-G998': { ram: '12', cores: '8' },
+  'SM-G990': { ram: '8', cores: '8' }, // S21 FE
+  'SM-S901': { ram: '8', cores: '8' }, 'SM-S906': { ram: '8', cores: '8' }, 'SM-S908': { ram: '12', cores: '8' },
+  'SM-S911': { ram: '8', cores: '8' }, 'SM-S916': { ram: '8', cores: '8' }, 'SM-S918': { ram: '12', cores: '8' },
+  'SM-S711': { ram: '8', cores: '8' }, // S23 FE
   'Xiaomi Mi 10': { ram: '8', cores: '8' },   'Xiaomi Mi 11': { ram: '8', cores: '8' },
   'Sony Xperia 5 II': { ram: '8', cores: '8' },
   // Tablets
