@@ -320,7 +320,16 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    // Serve static files in production
+    // Rate limiting for production static and catch-all routes
+    const productionLimiter = rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 1000, // limit each IP to 1000 requests per windowMs
+      standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+      legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    });
+
+    // Serve static files in production with rate limiting
+    app.use(productionLimiter);
     app.use(express.static("dist"));
     app.get("*", (req, res) => {
       res.sendFile(path.resolve("dist/index.html"));
