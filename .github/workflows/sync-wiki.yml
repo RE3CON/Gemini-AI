@@ -1,4 +1,6 @@
 name: Sync Wiki
+permissions:
+  contents: read
 
 # Force re-scan of workflow
 on:
@@ -11,6 +13,8 @@ on:
 
 jobs:
   sync:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
