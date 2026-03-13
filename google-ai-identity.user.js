@@ -833,7 +833,8 @@
             
 
             // Specific Layer: ChatGPT (OpenAI) - Sovereign Node v61
-            if (window.location.host.includes('chatgpt.com')) {
+            const chatgptHosts = ['chatgpt.com'];
+            if (chatgptHosts.includes(window.location.host)) {
                 let headers = (input instanceof Request) ? new Headers(input.headers) : new Headers(init.headers || {});
                 headers.set('X-Client-Tier', 'ULTRA_REASONING');
                 headers.set('X-OpenAI-Context-Override', 'max_tokens=256k;thinking=true');
