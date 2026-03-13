@@ -358,7 +358,7 @@
     // --- 5. CONTEXT-SNATCHER: CROSS-DOMAIN BRIDGE & EMERGENCY EXIT (v1.3) ---
     const applyContextSnatcher = () => {
         
-        const isGemini = window.location.host.includes('gemini.google.com');
+        const isGemini = window.location.host === 'gemini.google.com';
         const snatcherBtn = document.createElement('button');
         
         // CSS for S-Pen Hover Effect (Physics & Glow)
