@@ -863,7 +863,7 @@
             }
 
             // SAFETY: Only inject Gemini headers on Gemini Origin
-            if (!window.location.host.includes('gemini.google.com')) {
+            if (window.location.hostname !== 'gemini.google.com') {
                 return originalFetch(...args);
             }
 
